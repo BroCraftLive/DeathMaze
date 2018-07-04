@@ -2,7 +2,6 @@ package com.georlegacy.general.deathmaze.listeners;
 
 import com.georlegacy.general.deathmaze.DeathMaze;
 import com.georlegacy.general.deathmaze.objects.PlayerStats;
-import com.georlegacy.general.deathmaze.objects.enumeration.MazeMode;
 import com.georlegacy.general.deathmaze.util.ScoreboardUtil;
 import com.georlegacy.general.deathmaze.util.StatsEncoder;
 import org.bukkit.entity.Player;
@@ -36,6 +35,7 @@ public class PlayerJoinListener implements Listener {
                 }
             }
 
+            p.sendMessage(plugin.getConfiguration().getVisitMessage(p));
             ScoreboardUtil.send(e.getPlayer(), stats);
         }
 

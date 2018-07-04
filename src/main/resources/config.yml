@@ -10,6 +10,7 @@
 # %LEVEL% - The player's current level
 # %XP% - The player's current excess xp
 # %NEXTXP% - The total xp of the next level
+# %TOTALXP% - The player's total ever lifetime xp
 
 # Worlds that DeathMaze is active in.
 EnabledWorlds:
@@ -41,6 +42,7 @@ ScoreboardFormat:
 - '&bRegions: &e%REGIONS%'
 - '&bCurrent Region: &e%CURRENTREGION%'
 - '&bLevel: &e%LEVEL%'
+- '&bTotal XP: &e%TOTALXP%'
 - '&bNext Level: &e%XP%/%NEXTXP%'
 
 # Format for staff editing scoreboard.
@@ -92,13 +94,13 @@ RegionEntryBlindness: 2
 DefaultRefillSeconds: 15
 
 # XP earned by a player for every 100 meters walked in the maze
-XPPer100M: 5
+XPPer100M: 2
 
 # XP earned by a player for every kill in the maze
-XPPerKill: 8
+XPPerKill: 12
 
 # XP earned by a player dying in the maze
-XPPerDeath: 0
+XPPerDeath: 3
 
 # XP earned by a player for opening a new lootable
 XPPerLootable: 15

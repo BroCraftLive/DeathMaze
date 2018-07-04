@@ -26,19 +26,19 @@ public enum Level implements Serializable {
     @Getter private int level;
     @Getter private int xp;
 
-    @Getter private int previousTotal;
-
-    Level(int level, int xp) {
-        System.out.println("init");
-        this.level = level;
-        this.xp = xp;
+    public int getPreviousTotal() {
+        int previousTotal = 0;
         for (Level val : values()) {
-            System.out.println("for");
             if (val.getLevel() < level) {
-                System.out.println("if");
                 previousTotal += val.getXp();
             }
         }
+        return previousTotal;
+    }
+
+    Level(int level, int xp) {
+        this.level = level;
+        this.xp = xp;
     }
 
     public static Level getNextLevel(Level level) {

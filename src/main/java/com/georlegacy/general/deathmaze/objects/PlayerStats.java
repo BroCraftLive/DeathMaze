@@ -32,8 +32,8 @@ public @Data class PlayerStats implements Serializable {
         if (excessXp >= Level.getNextLevel(currentLevel).getXp()) {
             excessXp = 0;
             currentLevel = Level.getNextLevel(currentLevel);
-            ScoreboardUtil.send(Bukkit.getPlayerExact(name), this);
         }
+        ScoreboardUtil.send(Bukkit.getPlayerExact(name), this);
     }
 
     @Getter @Setter private double distance;

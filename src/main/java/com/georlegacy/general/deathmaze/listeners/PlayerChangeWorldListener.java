@@ -16,7 +16,11 @@ public class PlayerChangeWorldListener implements Listener {
     @EventHandler
     private void onChange(PlayerChangedWorldEvent e) {
 
-        e.getPlayer().setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
+        if (!plugin.getConfiguration().getEnabledWorlds().contains(e.getPlayer().getWorld())) {
+            e.getPlayer().setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
+        } else {
+            e.getPlayer().sendMessage(plugin.getConfiguration().getVisitMessage(e.getPlayer()));
+        }
 
         plugin.getModes().put(e.getPlayer(), MazeMode.getByGameMode(e.getPlayer().getGameMode()));
 

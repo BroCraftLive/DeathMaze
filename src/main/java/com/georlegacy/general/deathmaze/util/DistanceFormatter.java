@@ -24,7 +24,7 @@ public class DistanceFormatter {
     public static String format(int toFormat) {
         for (Unit u : Unit.values()) {
             if (toFormat >= u.min && toFormat <= u.max) {
-                return new DecimalFormat("#.#").format(toFormat * u.multiplier) + u.displayName;
+                return new DecimalFormat(u.multiplier >= 1 ? "#" : "#.#").format(toFormat * u.multiplier) + u.displayName;
             }
         }
         try {

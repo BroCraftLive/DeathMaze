@@ -74,10 +74,11 @@ public class ConfigUtil {
                     .replace("%DEATHS%", format(stats.getDeaths()))
                     .replace("%REGIONS%", format(stats.getRegionsExplored().size()))
                     .replace("%CURRENTREGION%", stats.getCurrentRegion().getName())
-                    .replace("%CONTAINERS%", format(stats.getContainersLooted().size())
+                    .replace("%CONTAINERS%", format(stats.getContainersLooted().size()))
                     .replace("%LEVEL%", format(stats.getCurrentLevel().getLevel()))
-                    .replace("%XP%", format(stats.getExcessXp()))
-                    .replace("%NEXTXP%", format(Level.getNextLevel(stats.getCurrentLevel()).getLevel())))
+                    .replace("%XP%", formatAsInteger(stats.getExcessXp()))
+                    .replace("%NEXTXP%", format(Level.getNextLevel(stats.getCurrentLevel()).getXp()))
+                    .replace("%TOTALXP%", formatAsInteger(stats.getCurrentLevel().getPreviousTotal() + stats.getExcessXp()))
             );
             if (formattedLine.length() >= 40)
                 formattedLine = "LINE_TOO_LONG";

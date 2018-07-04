@@ -43,4 +43,13 @@ public class NumberFormatter {
         return new DecimalFormat("#.#").format(toFormat * Unit.BILLION.multiplier) + Unit.BILLION.displayName;
     }
 
+    public static String formatAsInteger(double toFormat) {
+        for (Unit u : Unit.values()) {
+            if (toFormat >= u.min && toFormat <= u.max) {
+                return new DecimalFormat("#").format(toFormat * u.multiplier) + u.displayName;
+            }
+        }
+        return new DecimalFormat("#").format(toFormat * Unit.BILLION.multiplier) + Unit.BILLION.displayName;
+    }
+
 }
