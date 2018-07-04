@@ -131,3 +131,9 @@ RegionTeleportSuccess: '&aTeleporting...'
 ReloadCommandSuccess: '&aDeathMaze has been reloaded.'
 
 MazeSetSpawnSuccess: '&aYou have successfully set the spawn for the maze.'
+
+PlayerStatsResetNoPlayer: '&eYou need to provide a player to reset.'
+
+PlayerStatsResetNotPlayer: '&eThat player has never ventured to the maze.'
+
+PlayerStatsResetSuccess: '&aThat players stats have been reset.'

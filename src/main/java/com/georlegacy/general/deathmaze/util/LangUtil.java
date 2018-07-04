@@ -94,6 +94,9 @@ public class LangUtil {
         CONTAINER_TP_NO_LOOTABLE = isInitialised ? format(config.getString("ContainerTPNoLootable")) : noMsg;
         CONTAINER_TP_NOT_LOOTABLE = isInitialised ? format(config.getString("ContainerTPNotLootable")) : noMsg;
         CONTAINER_TP_SUCCESS = isInitialised ? format(config.getString("ContainerTPSuccess")) : noMsg;
+        PLAYER_RESET_STATS_NO_PLAYER = isInitialised ? format(config.getString("PlayerStatsResetNoPlayer")) : noMsg;
+        PLAYER_RESET_STATS_NOT_PLAYER = isInitialised ? format(config.getString("PlayerStatsResetNotPlayer")) : noMsg;
+        PLAYER_RESET_STATS_SUCCESS = isInitialised ? format(config.getString("PlayerStatsResetSuccess")) : noMsg;
 
     }
 
@@ -227,6 +230,12 @@ public class LangUtil {
     public static String CONTAINER_TP_NOT_LOOTABLE;
 
     public static String CONTAINER_TP_SUCCESS;
+
+    public static String PLAYER_RESET_STATS_NO_PLAYER;
+
+    public static String PLAYER_RESET_STATS_NOT_PLAYER;
+
+    public static String PLAYER_RESET_STATS_SUCCESS;
 
     public static String CHECK_CONTAINER_LOOTABLE_TRUE(ContainerLootable container) {
         return CHECK_CONTAINER_LOOTABLE_TRUE

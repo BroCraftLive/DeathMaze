@@ -26,6 +26,7 @@ public class DeathMazeCommand implements CommandExecutor {
             sender.sendMessage(ColorUtil.format("&c/deathmaze visit - &7Takes you to the maze"));
             sender.sendMessage(ColorUtil.format("&c/deathmaze reload - &7Reloads the plugin and configurations"));
             sender.sendMessage(ColorUtil.format("&c/deathmaze setspawn - &7Sets the spawnpoint for the Maze"));
+            sender.sendMessage(ColorUtil.format("&c/deathmaze reset <player> - &7Resets ALL of a player's scores"));
             sender.sendMessage(ColorUtil.format("&c/deathmaze version - &7Displays version and info"));
             return true;
         }
@@ -66,6 +67,12 @@ public class DeathMazeCommand implements CommandExecutor {
                 else
                     new SetSpawnCommand().onCommand(sender, command, label, args);
                 break;
+            case "reset":
+                c = getAnnotation(ResetCommand.class);
+                if (!sender.hasPermission(c.permission()))
+                    sender.sendMessage(LangUtil.PREFIX + LangUtil.NO_PERMISSION_MESSAGE);
+                else
+                    new ResetCommand().onCommand(sender, command, label, args);
             case "version":
                 c = getAnnotation(VersionCommand.class);
                 if (!sender.hasPermission(c.permission()))
@@ -81,6 +88,7 @@ public class DeathMazeCommand implements CommandExecutor {
                 sender.sendMessage(ColorUtil.format("&c/deathmaze visit - &7Takes you to the maze"));
                 sender.sendMessage(ColorUtil.format("&c/deathmaze reload - &7Reloads the plugin and configurations"));
                 sender.sendMessage(ColorUtil.format("&c/deathmaze setspawn - &7Sets the spawnpoint for the Maze"));
+                sender.sendMessage(ColorUtil.format("&c/deathmaze reset <player> - &7Resets ALL of a player's scores"));
                 sender.sendMessage(ColorUtil.format("&c/deathmaze version - &7Displays version and info"));
                 break;
         }

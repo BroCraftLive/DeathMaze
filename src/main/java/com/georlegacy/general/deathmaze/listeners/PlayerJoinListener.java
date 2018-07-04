@@ -19,6 +19,8 @@ public class PlayerJoinListener implements Listener {
     public void onJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
 
+        plugin.getMaze().getUuids().put(p.getName(), p.getUniqueId().toString());
+
         if (plugin.getConfiguration().getEnabledWorlds().contains(p.getWorld())) {
             PlayerStats stats;
             if (plugin.stats.containsKey(p)) {
