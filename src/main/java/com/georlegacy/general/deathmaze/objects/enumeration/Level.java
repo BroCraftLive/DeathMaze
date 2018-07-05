@@ -29,7 +29,7 @@ public enum Level implements Serializable {
     public int getPreviousTotal() {
         int previousTotal = 0;
         for (Level val : values()) {
-            if (val.getLevel() < level) {
+            if (val.getLevel() <= level) {
                 previousTotal += val.getXp();
             }
         }
