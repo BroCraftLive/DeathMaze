@@ -115,6 +115,7 @@ public final class DeathMaze extends JavaPlugin {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private void checkPlayers() {
         for (Player p : Bukkit.getOnlinePlayers()) {
             if (!stats.containsKey(p)) continue;

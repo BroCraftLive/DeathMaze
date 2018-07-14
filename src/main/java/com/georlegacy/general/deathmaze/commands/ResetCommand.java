@@ -22,7 +22,7 @@ public class ResetCommand {
             player.sendMessage(LangUtil.PREFIX + LangUtil.PLAYER_RESET_STATS_NOT_PLAYER);
             return true;
         }
-        File file = new File(DeathMaze.getInstance().getDataFolder() + File.separator + "players", DeathMaze.getInstance().getMaze().getUuids().get(args[1]) + ".yml");
+        File file = new File(DeathMaze.getInstance().getDataFolder() + File.separator + "players", DeathMaze.getInstance().getMaze().getUuids().get(args[1]) + ".dat");
         if (!file.exists()) {
             player.sendMessage(LangUtil.PREFIX + LangUtil.PLAYER_RESET_STATS_NOT_PLAYER);
             return true;

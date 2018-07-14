@@ -19,11 +19,14 @@ public class Maze implements Serializable {
 
     @Getter private List<RegionExplorable> regions;
 
+    @Getter private List<Leaderboard> leaderboards;
+
     @Getter private HashMap</*Username*/String, /*UUID*/String> uuids;
 
     public Maze() {
         containers = new LinkedList<ContainerLootable>();
         regions = new LinkedList<RegionExplorable>();
+        leaderboards = new LinkedList<Leaderboard>();
         spawn = new SerializableLocation(new Location(
                 Bukkit.getWorlds().get(0),
                 0,

@@ -31,6 +31,8 @@ public class DeathMazeCommand implements CommandExecutor {
             return true;
         }
         com.georlegacy.general.deathmaze.commands.Command c;
+
+        String sub  = args[0];
         switch (args[0].toLowerCase()) {
             case "lootable":
                 c = getAnnotation(ContainerLootableCommand.class);
@@ -38,6 +40,13 @@ public class DeathMazeCommand implements CommandExecutor {
                     sender.sendMessage(LangUtil.PREFIX + LangUtil.NO_PERMISSION_MESSAGE);
                 else
                     new ContainerLootableCommand().onCommand(sender, command, label, args);
+                break;
+            case "leaderboard":
+                c = getAnnotation(LeaderboardCommand.class);
+                if (!sender.hasPermission(c.permission()))
+                    sender.sendMessage(LangUtil.PREFIX + LangUtil.NO_PERMISSION_MESSAGE);
+                else
+                    new LeaderboardCommand().onCommand(sender, command, label, args);
                 break;
             case "region":
                 c = getAnnotation(RegionExplorableCommand.class);
@@ -73,6 +82,7 @@ public class DeathMazeCommand implements CommandExecutor {
                     sender.sendMessage(LangUtil.PREFIX + LangUtil.NO_PERMISSION_MESSAGE);
                 else
                     new ResetCommand().onCommand(sender, command, label, args);
+                break;
             case "version":
                 c = getAnnotation(VersionCommand.class);
                 if (!sender.hasPermission(c.permission()))
