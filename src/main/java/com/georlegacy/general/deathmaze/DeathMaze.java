@@ -21,7 +21,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 
 public final class DeathMaze extends JavaPlugin {
@@ -32,6 +35,13 @@ public final class DeathMaze extends JavaPlugin {
     @Getter private HashMap<ContainerLootable, Boolean> loots;
     @Getter private HashMap<String, PaginationSet> playerRegionLists;
     @Getter private HashMap<String, PaginationSet> playerLootableLists;
+    @Getter private HashMap<String, PaginationSet> playerLeaderboardKillsViewLists;
+    @Getter private HashMap<String, PaginationSet> playerLeaderboardDeathsViewLists;
+    @Getter private HashMap<String, PaginationSet> playerLeaderboardLevelViewLists;
+    @Getter private HashMap<String, PaginationSet> playerLeaderboardXPViewLists;
+    @Getter private HashMap<String, PaginationSet> playerLeaderboardDistanceViewLists;
+    @Getter private HashMap<String, PaginationSet> playerLeaderboardRegionsViewLists;
+    @Getter private HashMap<String, PaginationSet> playerLeaderboardLootablesViewLists;
 
     @Getter private Maze maze;
     @Getter private ConfigUtil configuration;
@@ -54,8 +64,17 @@ public final class DeathMaze extends JavaPlugin {
         refills = new HashMap<Integer, ContainerLootable>();
         regions = new HashMap<Player, RegionExplorable>();
         loots = new HashMap<ContainerLootable, Boolean>();
+
         playerRegionLists = new HashMap<String, PaginationSet>();
         playerLootableLists = new HashMap<String, PaginationSet>();
+        playerLeaderboardKillsViewLists = new HashMap<String, PaginationSet>();
+        playerLeaderboardDeathsViewLists = new HashMap<String, PaginationSet>();
+        playerLeaderboardLevelViewLists = new HashMap<String, PaginationSet>();
+        playerLeaderboardXPViewLists = new HashMap<String, PaginationSet>();
+        playerLeaderboardDistanceViewLists = new HashMap<String, PaginationSet>();
+        playerLeaderboardRegionsViewLists = new HashMap<String, PaginationSet>();
+        playerLeaderboardLootablesViewLists = new HashMap<String, PaginationSet>();
+
         configuration = ConfigUtil.get();
         worldedit = (WorldEditPlugin) this.getServer().getPluginManager().getPlugin("WorldEdit");
 
@@ -87,12 +106,11 @@ public final class DeathMaze extends JavaPlugin {
     @Override
     public void onDisable() {
         MazeEncoder.encode(maze);
-        for (Map.Entry<Player, PlayerStats> entry : stats.entrySet()) {
+        for (Map.Entry<Player, PlayerStats> entry : stats.entrySet())
             StatsEncoder.encode(entry.getValue());
-        }
-        for (int id : refills.keySet()) {
+
+        for (int id : refills.keySet())
             getServer().getScheduler().cancelTask(id);
-        }
     }
 
     public void reloadAll() {
@@ -109,7 +127,8 @@ public final class DeathMaze extends JavaPlugin {
         refills.clear();
         for (ContainerLootable c : maze.getContainers()) {
             Refill refill = new Refill(this);
-            final int id = getServer().getScheduler().scheduleSyncRepeatingTask(this, refill, 1L, (c.getRefillSeconds()*20));
+            final int id = getServer().getScheduler().scheduleSyncRepeatingTask(this, refill, 1L,
+                    (c.getRefillSeconds()*20));
             refill.setTaskID(id);
             refills.put(id, c);
         }

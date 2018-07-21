@@ -45,7 +45,6 @@ public class Leaderboard implements Serializable {
     }
 
     public synchronized int update() {
-        int i = 0;
         List<PlayerStats> allStats = new LinkedList<PlayerStats>();
         for (File file : Objects.requireNonNull(new File(DeathMaze.getInstance().getDataFolder() + File.separator + "players" + File.separator).listFiles())) {
             allStats.add(StatsEncoder.decode(file));
@@ -69,7 +68,7 @@ public class Leaderboard implements Serializable {
                     case LOOTABLES:
                         return Integer.compare(o1.getContainersLooted().size(), o2.getContainersLooted().size());
                 }
-                throw new RuntimeException("A fatal error occurred whilst updating a leaderboard");
+                throw new RuntimeException("A fatal error occurred whilst updating leaderboard" + name);
             }
         });
         this.statsList.clear();

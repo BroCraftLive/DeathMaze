@@ -137,3 +137,45 @@ PlayerStatsResetNoPlayer: '&eYou need to provide a player to reset.'
 PlayerStatsResetNotPlayer: '&eThat player has never ventured to the maze.'
 
 PlayerStatsResetSuccess: '&aThat players stats have been reset.'
+
+LeaderboardListKillsNotPage: '&eThat is not a valid page.'
+
+LeaderboardListKillsNoEntries: '&eThere are currently no players with kills.'
+
+LeaderboardListKillsHeader: '&aTop players sorted by kills:'
+
+LeaderboardListDeathsNotPage: '&eThat is not a valid page.'
+
+LeaderboardListDeathsNoEntries: '&eThere are currently no players with deaths.'
+
+LeaderboardListDeathsHeader: '&aTop players sorted by deaths:'
+
+LeaderboardListLevelNotPage: '&eThat is not a valid page.'
+
+LeaderboardListLevelNoEntries: '&eThere are currently no players with levels.'
+
+LeaderboardListLevelHeader: '&aTop players sorted by level:'
+
+LeaderboardListXPNotPage: '&eThat is not a valid page.'
+
+LeaderboardListXPNoEntries: '&eThere are currently no players with XP.'
+
+LeaderboardListXPHeader: '&aTop players sorted by XP:'
+
+LeaderboardListDistanceNotPage: '&eThat is not a valid page.'
+
+LeaderboardListDistanceNoEntries: '&eThere are currently no players with distance.'
+
+LeaderboardListDistanceHeader: '&aTop players sorted by distance:'
+
+LeaderboardListRegionsNotPage: '&eThat is not a valid page.'
+
+LeaderboardListRegionsNoEntries: '&eThere are currently no players with regions.'
+
+LeaderboardListRegionsHeader: '&aTop players sorted by regions:'
+
+LeaderboardListLootablesNotPage: '&eThat is not a valid page.'
+
+LeaderboardListLootablesNoEntries: '&eThere are currently no players with lootables.'
+
+LeaderboardListLootablesHeader: '&aTop players sorted by lootables:'

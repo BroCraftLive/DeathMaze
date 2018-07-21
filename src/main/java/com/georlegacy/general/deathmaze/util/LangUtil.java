@@ -97,6 +97,27 @@ public class LangUtil {
         PLAYER_RESET_STATS_NO_PLAYER = isInitialised ? format(config.getString("PlayerStatsResetNoPlayer")) : noMsg;
         PLAYER_RESET_STATS_NOT_PLAYER = isInitialised ? format(config.getString("PlayerStatsResetNotPlayer")) : noMsg;
         PLAYER_RESET_STATS_SUCCESS = isInitialised ? format(config.getString("PlayerStatsResetSuccess")) : noMsg;
+        LEADERBOARD_LIST_KILLS_NOT_PAGE = isInitialised ? format(config.getString("LeaderboardListKillsNotPage")) : noMsg;
+        LEADERBOARD_LIST_KILLS_NO_ENTRIES = isInitialised ? format(config.getString("LeaderboardListKillsNoEntries")) : noMsg;
+        LEADERBOARD_LIST_KILLS_HEADER = isInitialised ? format(config.getString("LeaderboardListKillsHeader")) : noMsg;
+        LEADERBOARD_LIST_DEATHS_NOT_PAGE = isInitialised ? format(config.getString("LeaderboardListDeathsNotPage")) : noMsg;
+        LEADERBOARD_LIST_DEATHS_NO_ENTRIES = isInitialised ? format(config.getString("LeaderboardListDeathsNoEntries")) : noMsg;
+        LEADERBOARD_LIST_DEATHS_HEADER = isInitialised ? format(config.getString("LeaderboardListDeathsHeader")) : noMsg;
+        LEADERBOARD_LIST_LEVEL_NOT_PAGE = isInitialised ? format(config.getString("LeaderboardListLevelNotPage")) : noMsg;
+        LEADERBOARD_LIST_LEVEL_NO_ENTRIES = isInitialised ? format(config.getString("LeaderboardListLevelNoEntries")) : noMsg;
+        LEADERBOARD_LIST_LEVEL_HEADER = isInitialised ? format(config.getString("LeaderboardListLevelHeader")) : noMsg;
+        LEADERBOARD_LIST_XP_NOT_PAGE = isInitialised ? format(config.getString("LeaderboardListXPNotPage")) : noMsg;
+        LEADERBOARD_LIST_XP_NO_ENTRIES = isInitialised ? format(config.getString("LeaderboardListXPNoEntries")) : noMsg;
+        LEADERBOARD_LIST_XP_HEADER = isInitialised ? format(config.getString("LeaderboardListXPHeader")) : noMsg;
+        LEADERBOARD_LIST_DISTANCE_NOT_PAGE = isInitialised ? format(config.getString("LeaderboardListDistanceNotPage")) : noMsg;
+        LEADERBOARD_LIST_DISTANCE_NO_ENTRIES = isInitialised ? format(config.getString("LeaderboardListDistanceNoEntries")) : noMsg;
+        LEADERBOARD_LIST_DISTANCE_HEADER = isInitialised ? format(config.getString("LeaderboardListDistanceHeader")) : noMsg;
+        LEADERBOARD_LIST_REGIONS_NOT_PAGE = isInitialised ? format(config.getString("LeaderboardListRegionsNotPage")) : noMsg;
+        LEADERBOARD_LIST_REGIONS_NO_ENTRIES = isInitialised ? format(config.getString("LeaderboardListRegionsNoEntries")) : noMsg;
+        LEADERBOARD_LIST_REGIONS_HEADER = isInitialised ? format(config.getString("LeaderboardListRegionsHeader")) : noMsg;
+        LEADERBOARD_LIST_LOOTABLES_NOT_PAGE = isInitialised ? format(config.getString("LeaderboardListLootablesNotPage")) : noMsg;
+        LEADERBOARD_LIST_LOOTABLES_NO_ENTRIES = isInitialised ? format(config.getString("LeaderboardListLootablesNoEntries")) : noMsg;
+        LEADERBOARD_LIST_LOOTABLES_HEADER = isInitialised ? format(config.getString("LeaderboardListLootablesHeader")) : noMsg;
 
     }
 
@@ -236,6 +257,48 @@ public class LangUtil {
     public static String PLAYER_RESET_STATS_NOT_PLAYER;
 
     public static String PLAYER_RESET_STATS_SUCCESS;
+
+    public static String LEADERBOARD_LIST_KILLS_NOT_PAGE;
+
+    public static String LEADERBOARD_LIST_KILLS_NO_ENTRIES;
+
+    public static String LEADERBOARD_LIST_KILLS_HEADER;
+
+    public static String LEADERBOARD_LIST_DEATHS_NOT_PAGE;
+
+    public static String LEADERBOARD_LIST_DEATHS_NO_ENTRIES;
+
+    public static String LEADERBOARD_LIST_DEATHS_HEADER;
+
+    public static String LEADERBOARD_LIST_LEVEL_NOT_PAGE;
+
+    public static String LEADERBOARD_LIST_LEVEL_NO_ENTRIES;
+
+    public static String LEADERBOARD_LIST_LEVEL_HEADER;
+
+    public static String LEADERBOARD_LIST_XP_NOT_PAGE;
+
+    public static String LEADERBOARD_LIST_XP_NO_ENTRIES;
+
+    public static String LEADERBOARD_LIST_XP_HEADER;
+
+    public static String LEADERBOARD_LIST_DISTANCE_NOT_PAGE;
+
+    public static String LEADERBOARD_LIST_DISTANCE_NO_ENTRIES;
+
+    public static String LEADERBOARD_LIST_DISTANCE_HEADER;
+
+    public static String LEADERBOARD_LIST_REGIONS_NOT_PAGE;
+
+    public static String LEADERBOARD_LIST_REGIONS_NO_ENTRIES;
+
+    public static String LEADERBOARD_LIST_REGIONS_HEADER;
+
+    public static String LEADERBOARD_LIST_LOOTABLES_NOT_PAGE;
+
+    public static String LEADERBOARD_LIST_LOOTABLES_NO_ENTRIES;
+
+    public static String LEADERBOARD_LIST_LOOTABLES_HEADER;
 
     public static String CHECK_CONTAINER_LOOTABLE_TRUE(ContainerLootable container) {
         return CHECK_CONTAINER_LOOTABLE_TRUE

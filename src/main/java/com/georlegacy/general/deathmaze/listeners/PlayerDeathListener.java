@@ -13,10 +13,11 @@ public class PlayerDeathListener implements Listener {
         this.plugin = plugin;
     }
 
+    @EventHandler
     public void onDeath(PlayerDeathEvent e) {
         if (plugin.getConfiguration().getEnabledWorlds().contains(e.getEntity().getWorld())) {
             if (plugin.getModes().getOrDefault(e.getEntity(), MazeMode.PLAYING).equals(MazeMode.PLAYING))
-            PlayerUtil.addDeath(e.getEntity());
+                PlayerUtil.addDeath(e.getEntity());
         }
 
     }
