@@ -629,7 +629,73 @@ public class LeaderboardCommand {
             return true;
         }
         if (args[1].equalsIgnoreCase("list")) {
-            //TODO pagination structure
+            PaginationSet storedSet = null;
+            PaginationSet set;
+            if (DeathMaze.getInstance().getPlayerLeaderboardLists().containsKey(player.getUniqueId().toString())) {
+                storedSet = DeathMaze.getInstance().getPlayerLeaderboardLists().get(player.getUniqueId().toString());
+            }
+            List<String> leaderboardNames = new ArrayList<String>();
+            DeathMaze.getInstance().getMaze().getLeaderboards().forEach(ldbd -> leaderboardNames.add(ldbd.getName()));
+            if (leaderboardNames.size() == 0) {
+                player.sendMessage(LangUtil.PREFIX + LangUtil.LEADERBOARDS_LIST_NO_LEADERBOARDS);
+                return true;
+            }
+            set = new PaginationSet(leaderboardNames, 6);
+            PaginationPage page;
+            if (args.length == 2) {
+                page = set.getPage(0);
+                player.sendMessage(LangUtil.PREFIX + LangUtil.LEADERBOARDS_LIST_HEADER);
+                for (String item : page.getItems()) {
+                    player.sendMessage(ChatColor.GREEN + item);
+                }
+                DeathMaze.getInstance().getPlayerLeaderboardLists().put(player.getUniqueId().toString(), set);
+                sendListFooter(player, page.getNumber());
+                return true;
+            }
+            if (args[2].equalsIgnoreCase("next")) {
+                page = storedSet!=null ? storedSet.getNextPage() : set.getNextPage();
+                if (page instanceof EmptyPaginationPage) {
+                    player.sendMessage(LangUtil.PREFIX + LangUtil.LEADERBOARDS_LIST_NOT_PAGE);
+                    return true;
+                }
+                player.sendMessage(LangUtil.PREFIX + LangUtil.LEADERBOARDS_LIST_HEADER);
+                for (String item : page.getItems()) {
+                    player.sendMessage(ChatColor.GREEN + item);
+                }
+                sendListFooter(player, page.getNumber());
+                return true;
+            }
+            if (args[2].equalsIgnoreCase("previous")) {
+                page = storedSet!=null ? storedSet.getPreviousPage() : set.getPreviousPage();
+                if (page instanceof EmptyPaginationPage) {
+                    player.sendMessage(LangUtil.PREFIX + LangUtil.LEADERBOARDS_LIST_NOT_PAGE);
+                    return true;
+                }
+                player.sendMessage(LangUtil.PREFIX + LangUtil.LEADERBOARDS_LIST_HEADER);
+                for (String item : page.getItems()) {
+                    player.sendMessage(ChatColor.GREEN + item);
+                }
+                sendListFooter(player, page.getNumber());
+                return true;
+            }
+            int pageNo;
+            try {
+                pageNo = Integer.parseInt(args[2]);
+            } catch (NumberFormatException ex) {
+                player.sendMessage(LangUtil.PREFIX + LangUtil.LEADERBOARDS_LIST_NOT_PAGE);
+                return true;
+            }
+            if ((pageNo > set.getPages().size()) || (pageNo <= 0)) {
+                player.sendMessage(LangUtil.PREFIX + LangUtil.LEADERBOARDS_LIST_NOT_PAGE);
+                return true;
+            }
+            page = set.getPage(pageNo - 1);
+            player.sendMessage(LangUtil.PREFIX + LangUtil.LEADERBOARDS_LIST_HEADER);
+            for (String item : page.getItems()) {
+                player.sendMessage(ChatColor.GREEN + item);
+            }
+            DeathMaze.getInstance().getPlayerLeaderboardLists().put(player.getUniqueId().toString(), set);
+            sendListFooter(player, pageNo);
             return true;
         }
         player.sendMessage(LangUtil.PREFIX + LangUtil.INCORRECT_ARGS_MESSAGE);
@@ -668,6 +734,38 @@ public class LeaderboardCommand {
         next.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/deathmaze leaderboard view " +
                 type.getFriendlyName() +
                 " next"));
+
+        player.spigot().sendMessage(end, previous, splitLeft, number, splitRight, next, end);
+    }
+
+    private void sendListFooter(Player player, int pageNumber) {
+        TextComponent end = new TextComponent("]----[");
+        end.setColor(net.md_5.bungee.api.ChatColor.GRAY);
+        end.setStrikethrough(true);
+
+        TextComponent previous = new TextComponent("◀◀");
+        previous.setColor(net.md_5.bungee.api.ChatColor.DARK_RED);
+        previous.setBold(true);
+        previous.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new BaseComponent[]{new TextComponent("Previous")}));
+        previous.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/deathmaze leaderboard list previous"));
+
+        TextComponent splitLeft = new TextComponent("]+");
+        splitLeft.setColor(net.md_5.bungee.api.ChatColor.GRAY);
+        splitLeft.setStrikethrough(true);
+
+        TextComponent number = new TextComponent(String.valueOf(pageNumber));
+        number.setBold(true);
+        number.setColor(net.md_5.bungee.api.ChatColor.RED);
+
+        TextComponent splitRight = new TextComponent("+[");
+        splitRight.setColor(net.md_5.bungee.api.ChatColor.GRAY);
+        splitRight.setStrikethrough(true);
+
+        TextComponent next = new TextComponent("▶▶");
+        next.setColor(net.md_5.bungee.api.ChatColor.DARK_RED);
+        next.setBold(true);
+        next.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new BaseComponent[]{new TextComponent("Next")}));
+        next.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/deathmaze leaderboard list next"));
 
         player.spigot().sendMessage(end, previous, splitLeft, number, splitRight, next, end);
     }

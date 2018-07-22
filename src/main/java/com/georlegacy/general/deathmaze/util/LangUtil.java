@@ -122,6 +122,9 @@ public class LangUtil {
         LEADERBOARD_LIST_LOOTABLES_NOT_PAGE = isInitialised ? format(config.getString("LeaderboardListLootablesNotPage")) : noMsg;
         LEADERBOARD_LIST_LOOTABLES_NO_ENTRIES = isInitialised ? format(config.getString("LeaderboardListLootablesNoEntries")) : noMsg;
         LEADERBOARD_LIST_LOOTABLES_HEADER = isInitialised ? format(config.getString("LeaderboardListLootablesHeader")) : noMsg;
+        LEADERBOARDS_LIST_NOT_PAGE = isInitialised ? format(config.getString("LeaderboardsListNotPage")) : noMsg;
+        LEADERBOARDS_LIST_NO_LEADERBOARDS = isInitialised ? format(config.getString("LeaderboardsListNoLeaderboards")) : noMsg;
+        LEADERBOARDS_LIST_HEADER = isInitialised ? format(config.getString("LeaderboardsListHeader")) : noMsg;
 
     }
 
@@ -311,6 +314,12 @@ public class LangUtil {
     public static String LEADERBOARD_LIST_LOOTABLES_NO_ENTRIES;
 
     public static String LEADERBOARD_LIST_LOOTABLES_HEADER;
+
+    public static String LEADERBOARDS_LIST_NOT_PAGE;
+
+    public static String LEADERBOARDS_LIST_NO_LEADERBOARDS;
+
+    public static String LEADERBOARDS_LIST_HEADER;
 
     public static String CHECK_CONTAINER_LOOTABLE_TRUE(ContainerLootable container) {
         return CHECK_CONTAINER_LOOTABLE_TRUE

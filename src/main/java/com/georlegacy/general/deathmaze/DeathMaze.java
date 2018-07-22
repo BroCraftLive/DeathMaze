@@ -35,6 +35,7 @@ public final class DeathMaze extends JavaPlugin {
     @Getter private HashMap<ContainerLootable, Boolean> loots;
     @Getter private HashMap<String, PaginationSet> playerRegionLists;
     @Getter private HashMap<String, PaginationSet> playerLootableLists;
+    @Getter private HashMap<String, PaginationSet> playerLeaderboardLists;
     @Getter private HashMap<String, PaginationSet> playerLeaderboardKillsViewLists;
     @Getter private HashMap<String, PaginationSet> playerLeaderboardDeathsViewLists;
     @Getter private HashMap<String, PaginationSet> playerLeaderboardLevelViewLists;
@@ -67,6 +68,7 @@ public final class DeathMaze extends JavaPlugin {
 
         playerRegionLists = new HashMap<String, PaginationSet>();
         playerLootableLists = new HashMap<String, PaginationSet>();
+        playerLeaderboardLists = new HashMap<String, PaginationSet>();
         playerLeaderboardKillsViewLists = new HashMap<String, PaginationSet>();
         playerLeaderboardDeathsViewLists = new HashMap<String, PaginationSet>();
         playerLeaderboardLevelViewLists = new HashMap<String, PaginationSet>();

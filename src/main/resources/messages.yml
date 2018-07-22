@@ -188,3 +188,9 @@ LeaderboardListLootablesNotPage: '&eThat is not a valid page.'
 LeaderboardListLootablesNoEntries: '&eThere are currently no players with lootables.'
 
 LeaderboardListLootablesHeader: '&aTop players sorted by lootables:'
+
+LeaderboardsListNotPage: '&eThat is not a valid page.'
+
+LeaderboardsListNoLeaderboards: '&eThere are currently no leaderboards configured.'
+
+LeaderboardsListHeader: '&aLeaderboards:'
