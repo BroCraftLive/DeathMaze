@@ -147,6 +147,10 @@ PlayerStatsResetNotPlayer: '&eThat player has never ventured to the maze.'
 
 PlayerStatsResetSuccess: '&aThat players stats have been reset.'
 
+LeaderboardListNoType: '&eYou need to provide a type to sort entries by.'
+
+LeaderboardListNotType: '&eThat is not a valid type.'
+
 LeaderboardListKillsNotPage: '&eThat is not a valid page.'
 
 LeaderboardListKillsNoEntries: '&eThere are currently no players with kills.'
@@ -188,6 +192,8 @@ LeaderboardListLootablesNotPage: '&eThat is not a valid page.'
 LeaderboardListLootablesNoEntries: '&eThere are currently no players with lootables.'
 
 LeaderboardListLootablesHeader: '&aTop players sorted by lootables:'
+
+LeaderboardUpdateSuccess: '&aLeaderboards have successfully been updated.'
 
 LeaderboardsListNotPage: '&eThat is not a valid page.'
 

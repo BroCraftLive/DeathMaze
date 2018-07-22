@@ -101,6 +101,8 @@ public class LangUtil {
         PLAYER_RESET_STATS_NO_PLAYER = isInitialised ? format(config.getString("PlayerStatsResetNoPlayer")) : noMsg;
         PLAYER_RESET_STATS_NOT_PLAYER = isInitialised ? format(config.getString("PlayerStatsResetNotPlayer")) : noMsg;
         PLAYER_RESET_STATS_SUCCESS = isInitialised ? format(config.getString("PlayerStatsResetSuccess")) : noMsg;
+        LEADERBOARD_LIST_NO_TYPE = isInitialised ? format(config.getString("LeaderboardListNoType")) : noMsg;
+        LEADERBOARD_LIST_NOT_TYPE = isInitialised ? format(config.getString("LeaderboardListNotType")) : noMsg;
         LEADERBOARD_LIST_KILLS_NOT_PAGE = isInitialised ? format(config.getString("LeaderboardListKillsNotPage")) : noMsg;
         LEADERBOARD_LIST_KILLS_NO_ENTRIES = isInitialised ? format(config.getString("LeaderboardListKillsNoEntries")) : noMsg;
         LEADERBOARD_LIST_KILLS_HEADER = isInitialised ? format(config.getString("LeaderboardListKillsHeader")) : noMsg;
@@ -122,6 +124,7 @@ public class LangUtil {
         LEADERBOARD_LIST_LOOTABLES_NOT_PAGE = isInitialised ? format(config.getString("LeaderboardListLootablesNotPage")) : noMsg;
         LEADERBOARD_LIST_LOOTABLES_NO_ENTRIES = isInitialised ? format(config.getString("LeaderboardListLootablesNoEntries")) : noMsg;
         LEADERBOARD_LIST_LOOTABLES_HEADER = isInitialised ? format(config.getString("LeaderboardListLootablesHeader")) : noMsg;
+        LEADERBOARD_UPDATE_SUCCESS = isInitialised ? format(config.getString("LeaderboardUpdateSuccess")) : noMsg;
         LEADERBOARDS_LIST_NOT_PAGE = isInitialised ? format(config.getString("LeaderboardsListNotPage")) : noMsg;
         LEADERBOARDS_LIST_NO_LEADERBOARDS = isInitialised ? format(config.getString("LeaderboardsListNoLeaderboards")) : noMsg;
         LEADERBOARDS_LIST_HEADER = isInitialised ? format(config.getString("LeaderboardsListHeader")) : noMsg;
@@ -273,6 +276,10 @@ public class LangUtil {
 
     public static String PLAYER_RESET_STATS_SUCCESS;
 
+    public static String LEADERBOARD_LIST_NO_TYPE;
+
+    public static String LEADERBOARD_LIST_NOT_TYPE;
+
     public static String LEADERBOARD_LIST_KILLS_NOT_PAGE;
 
     public static String LEADERBOARD_LIST_KILLS_NO_ENTRIES;
@@ -314,6 +321,8 @@ public class LangUtil {
     public static String LEADERBOARD_LIST_LOOTABLES_NO_ENTRIES;
 
     public static String LEADERBOARD_LIST_LOOTABLES_HEADER;
+
+    public static String LEADERBOARD_UPDATE_SUCCESS;
 
     public static String LEADERBOARDS_LIST_NOT_PAGE;
 

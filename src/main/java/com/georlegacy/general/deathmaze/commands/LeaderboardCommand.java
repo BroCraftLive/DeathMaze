@@ -38,19 +38,19 @@ public class LeaderboardCommand {
                     Bukkit.getLogger().warning("An unexpected value has been returned, if this happens repeatedly, please report.");
                 }
             });
-            //TODO success updated DeathMaze.getInstance().getMaze().getLeaderboards().length() leaderboards
+            player.sendMessage(LangUtil.PREFIX + LangUtil.LEADERBOARD_UPDATE_SUCCESS);
             return true;
         }
         if (args[1].equalsIgnoreCase("view")) {
             if (args.length == 2) {
-                //TODO provide a type
+                player.sendMessage(LangUtil.PREFIX + LangUtil.LEADERBOARD_LIST_NO_TYPE);
                 return true;
             }
             final LeaderboardType type;
             try {
                 type = LeaderboardType.valueOf(args[2].toUpperCase());
             } catch (IllegalArgumentException ex) {
-                //TODO not a valid type
+                player.sendMessage(LangUtil.PREFIX + LangUtil.LEADERBOARD_LIST_NOT_TYPE);
                 return true;
             }
             List<PlayerStats> allStats = new LinkedList<PlayerStats>();
@@ -58,28 +58,25 @@ public class LeaderboardCommand {
                     File.separator + "players" + File.separator).listFiles())) {
                 allStats.add(StatsEncoder.decode(file));
             }
-            Collections.sort(allStats, new Comparator<PlayerStats>() {
-                @Override
-                public int compare(PlayerStats o1, PlayerStats o2) {
-                    switch (type) {
-                        case KILLS:
-                            return Integer.compare(o2.getKills(), o1.getKills());
-                        case DEATHS:
-                            return Integer.compare(o2.getDeaths(), o1.getDeaths());
-                        case LEVEL:
-                            return Integer.compare(o2.getCurrentLevel().getLevel(), o1.getCurrentLevel().getLevel());
-                        case XP:
-                            return Math.round(Double.compare(o2.getCurrentLevel().getPreviousTotal() + o2.getExcessXp(),
-                                    o1.getCurrentLevel().getPreviousTotal() + o1.getExcessXp()));
-                        case DISTANCE:
-                            return Math.round(Double.compare(o2.getDistance(), o1.getDistance()));
-                        case REGIONS:
-                            return Integer.compare(o2.getRegionsExplored().size(), o1.getRegionsExplored().size());
-                        case LOOTABLES:
-                            return Integer.compare(o2.getContainersLooted().size(), o1.getContainersLooted().size());
-                    }
-                    throw new RuntimeException("A fatal error occurred whilst displaying a leaderboard to " + player.getName());
+            allStats.sort((o1, o2) -> {
+                switch (type) {
+                    case KILLS:
+                        return Integer.compare(o2.getKills(), o1.getKills());
+                    case DEATHS:
+                        return Integer.compare(o2.getDeaths(), o1.getDeaths());
+                    case LEVEL:
+                        return Integer.compare(o2.getCurrentLevel().getLevel(), o1.getCurrentLevel().getLevel());
+                    case XP:
+                        return Math.round(Double.compare(o2.getCurrentLevel().getPreviousTotal() + o2.getExcessXp(),
+                                o1.getCurrentLevel().getPreviousTotal() + o1.getExcessXp()));
+                    case DISTANCE:
+                        return Math.round(Double.compare(o2.getDistance(), o1.getDistance()));
+                    case REGIONS:
+                        return Integer.compare(o2.getRegionsExplored().size(), o1.getRegionsExplored().size());
+                    case LOOTABLES:
+                        return Integer.compare(o2.getContainersLooted().size(), o1.getContainersLooted().size());
                 }
+                throw new RuntimeException("A fatal error occurred whilst displaying a leaderboard to " + player.getName());
             });
             // Revisit and condense from nearly 500 lines to hopefully around 100
             if (type.equals(LeaderboardType.KILLS)) {
