@@ -44,6 +44,11 @@ public class Leaderboard implements Serializable {
         statsList = new LinkedList<PlayerStats>();
     }
 
+    public boolean render() {
+
+        return false;
+    }
+
     public synchronized int update() {
         List<PlayerStats> allStats = new LinkedList<PlayerStats>();
         for (File file : Objects.requireNonNull(new File(DeathMaze.getInstance().getDataFolder() + File.separator + "players" + File.separator).listFiles())) {
