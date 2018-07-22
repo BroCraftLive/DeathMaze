@@ -11,7 +11,6 @@ import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -62,8 +61,10 @@ public class ContainerLootableCommand {
                 for (String item : page.getItems()) {
                     TextComponent toSend = new TextComponent(item);
                     toSend.setColor(net.md_5.bungee.api.ChatColor.GREEN);
-                    toSend.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new BaseComponent[]{new TextComponent("Teleport")}));
-                    toSend.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/deathmaze lootable tp " + item));
+                    toSend.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
+                            new BaseComponent[]{new TextComponent("Teleport")}));
+                    toSend.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,
+                            "/deathmaze lootable tp " + item));
                     p.spigot().sendMessage(toSend);
                 }
                 DeathMaze.getInstance().getPlayerLootableLists().put(p.getUniqueId().toString(), set);
@@ -80,8 +81,10 @@ public class ContainerLootableCommand {
                 for (String item : page.getItems()) {
                     TextComponent toSend = new TextComponent(item);
                     toSend.setColor(net.md_5.bungee.api.ChatColor.GREEN);
-                    toSend.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new BaseComponent[]{new TextComponent("Teleport")}));
-                    toSend.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/deathmaze lootable tp " + item));
+                    toSend.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
+                            new BaseComponent[]{new TextComponent("Teleport")}));
+                    toSend.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,
+                            "/deathmaze lootable tp " + item));
                     p.spigot().sendMessage(toSend);
                 }
                 sendListFooter(p, page.getNumber());
@@ -97,8 +100,10 @@ public class ContainerLootableCommand {
                 for (String item : page.getItems()) {
                     TextComponent toSend = new TextComponent(item);
                     toSend.setColor(net.md_5.bungee.api.ChatColor.GREEN);
-                    toSend.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new BaseComponent[]{new TextComponent("Teleport")}));
-                    toSend.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/deathmaze lootable tp " + item));
+                    toSend.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
+                            new BaseComponent[]{new TextComponent("Teleport")}));
+                    toSend.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,
+                            "/deathmaze lootable tp " + item));
                     p.spigot().sendMessage(toSend);
                 }
                 sendListFooter(p, page.getNumber());
@@ -120,8 +125,10 @@ public class ContainerLootableCommand {
             for (String item : page.getItems()) {
                 TextComponent toSend = new TextComponent(item);
                 toSend.setColor(net.md_5.bungee.api.ChatColor.GREEN);
-                toSend.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new BaseComponent[]{new TextComponent("Teleport")}));
-                toSend.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/deathmaze lootable tp " + item));
+                toSend.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
+                        new BaseComponent[]{new TextComponent("Teleport")}));
+                toSend.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,
+                        "/deathmaze lootable tp " + item));
                 p.spigot().sendMessage(toSend);
             }
             DeathMaze.getInstance().getPlayerLootableLists().put(p.getUniqueId().toString(), set);
@@ -135,7 +142,8 @@ public class ContainerLootableCommand {
             }
             for (ContainerLootable lootable : DeathMaze.getInstance().getMaze().getContainers()) {
                 Location loc = lootable.getLocation().getLocation();
-                if ((loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + "-" + loc.getWorld().getName()).equalsIgnoreCase(args[2])) {
+                if ((loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + "-" +
+                        loc.getWorld().getName()).equalsIgnoreCase(args[2])) {
                     loc.setY(loc.getY() + 1);
                     p.teleport(loc);
                     p.sendMessage(LangUtil.PREFIX + LangUtil.CONTAINER_TP_SUCCESS);
@@ -193,9 +201,11 @@ public class ContainerLootableCommand {
                 return true;
             }
             DeathMaze.getInstance().getMaze().getContainers().add(new ContainerLootable(
+                    block.getType(),
                     DeathMaze.getInstance().getConfiguration().getDefaultRefillSeconds(),
                     (InventoryHolder) block.getState(),
-                    block.getLocation()
+                    block.getLocation(),
+                    false
             ));
             p.sendMessage(LangUtil.PREFIX + LangUtil.ADD_CONTAINER_COMMAND_SUCCESS);
             DeathMaze.getInstance().reloadAll();
@@ -218,6 +228,7 @@ public class ContainerLootableCommand {
             if (args.length < 3) {
                 p.sendMessage(LangUtil.PREFIX + LangUtil.HELP_HEADER);
                 p.sendMessage(ColorUtil.format("&c/deathmaze lootable set refill <seconds> - &7Sets the refill time for the container"));
+                p.sendMessage(ColorUtil.format("&c/deathmaze lootable set hides <boolean> - &7Sets whether the container hides when empty"));
                 return true;
             }
             if (args[2].equalsIgnoreCase("refill")) {
@@ -232,9 +243,11 @@ public class ContainerLootableCommand {
                         if (c.getLocation().getLocation().equals(block.getLocation())) {
                             DeathMaze.getInstance().getMaze().getContainers().remove(c);
                             DeathMaze.getInstance().getMaze().getContainers().add(new ContainerLootable(
+                                    block.getType(),
                                     seconds,
                                     (InventoryHolder) block.getState(),
-                                    c.getLocation().getLocation()
+                                    c.getLocation().getLocation(),
+                                    c.isHiddenWhenEmpty()
                             ));
                             p.sendMessage(LangUtil.PREFIX + LangUtil.SET_REFILL_TIME_CONTAINER_SUCCESS);
                             DeathMaze.getInstance().reloadAll();
@@ -248,8 +261,39 @@ public class ContainerLootableCommand {
                     return true;
                 }
             }
+            if (args[2].equalsIgnoreCase("hides")) {
+                if (args.length < 4) {
+                    p.sendMessage(LangUtil.PREFIX + LangUtil.SET_HIDES_CONTAINER_NO_BOOLEAN);
+                    return true;
+                }
+                try {
+                    boolean hides = Boolean.parseBoolean(args[3]);
+                    List<ContainerLootable> containers = DeathMaze.getInstance().getMaze().getContainers();
+                    for (ContainerLootable c : containers) {
+                        if (c.getLocation().getLocation().equals(block.getLocation())) {
+                            DeathMaze.getInstance().getMaze().getContainers().remove(c);
+                            DeathMaze.getInstance().getMaze().getContainers().add(new ContainerLootable(
+                                    block.getType(),
+                                    c.getRefillSeconds(),
+                                    (InventoryHolder) block.getState(),
+                                    c.getLocation().getLocation(),
+                                    hides
+                            ));
+                            p.sendMessage(LangUtil.PREFIX + LangUtil.SET_HIDES_CONTAINER_SUCCESS);
+                            DeathMaze.getInstance().reloadAll();
+                            return true;
+                        }
+                    }
+                    p.sendMessage(LangUtil.PREFIX + LangUtil.SET_HIDES_CONTAINER_COMMAND_FAIL_NOT_CONTAINER);
+                    return true;
+                } catch (NumberFormatException e) {
+                    p.sendMessage(LangUtil.PREFIX + LangUtil.SET_HIDES_CONTAINER_NOT_BOOLEAN);
+                    return true;
+                }
+            }
             p.sendMessage(LangUtil.PREFIX + LangUtil.HELP_HEADER);
             p.sendMessage(ColorUtil.format("&c/deathmaze lootable set refill <seconds> - &7Sets the refill time for the container"));
+            p.sendMessage(ColorUtil.format("&c/deathmaze lootable set hides <boolean> - &7Sets whether the container hides when empty"));
             return true;
         }
         if (args[1].equalsIgnoreCase("update")) {
@@ -266,9 +310,11 @@ public class ContainerLootableCommand {
             for (ContainerLootable c : containers) {
                 if (c.getLocation().getLocation().equals(block.getLocation())) {
                     DeathMaze.getInstance().getMaze().getContainers().add(new ContainerLootable(
+                            block.getType(),
                             c.getRefillSeconds(),
                             (InventoryHolder) block.getState(),
-                            c.getLocation().getLocation()
+                            c.getLocation().getLocation(),
+                            c.isHiddenWhenEmpty()
                     ));
                     DeathMaze.getInstance().getMaze().getContainers().remove(c);
                     DeathMaze.getInstance().reloadAll();

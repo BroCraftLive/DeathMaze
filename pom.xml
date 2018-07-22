@@ -8,7 +8,7 @@
     <artifactId>DeathMaze</artifactId>
     <version>1.1.5-DEV</version>
 
-    <name>${artifactId}</name>
+    <name>${project.artifactId}</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>

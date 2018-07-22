@@ -89,6 +89,7 @@ public final class DeathMaze extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         this.getServer().getPluginManager().registerEvents(new PlayerMoveListener(this), this);
         this.getServer().getPluginManager().registerEvents(new PlayerChangeWorldListener(this), this);
+        this.getServer().getPluginManager().registerEvents(new PlayerCloseContainerListener(this), this);
         this.getServer().getPluginManager().registerEvents(new PlayerMoveListener(this), this);
         this.getServer().getPluginManager().registerEvents(new PlayerKillEntityListener(this), this);
         this.getServer().getPluginManager().registerEvents(new PlayerOpenContainerListener(this), this);
@@ -114,6 +115,8 @@ public final class DeathMaze extends JavaPlugin {
     }
 
     public void reloadAll() {
+        MazeEncoder.encode(maze);
+        maze = MazeEncoder.decode();
         configuration = ConfigUtil.get();
         LangUtil.init();
         startRefills();

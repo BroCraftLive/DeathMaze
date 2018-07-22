@@ -2,7 +2,6 @@ package com.georlegacy.general.deathmaze.tasks;
 
 import com.georlegacy.general.deathmaze.DeathMaze;
 import com.georlegacy.general.deathmaze.objects.ContainerLootable;
-import com.georlegacy.general.deathmaze.objects.enumeration.MazeMode;
 import com.georlegacy.general.deathmaze.util.ItemStackSerializerUtil;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
@@ -26,12 +25,13 @@ public class Refill implements Runnable {
 
     @Override
     public void run() {
-        ContainerLootable c = plugin.getRefills().get(taskID);
-        InventoryHolder inv = (InventoryHolder) c.getLocation().getLocation().getBlock().getState();
+        ContainerLootable container = plugin.getRefills().get(taskID);
+        container.getLocation().getLocation().getBlock().setType(container.getType());
+        InventoryHolder inv = (InventoryHolder) container.getLocation().getLocation().getBlock().getState();
         List<ItemStack> it = new ArrayList<ItemStack>();
-        plugin.getLoots().put(c, false);
+        plugin.getLoots().put(container, false);
         try {
-            inv.getInventory().setContents(ItemStackSerializerUtil.itemStackArrayFromBase64(c.getItems()));
+            inv.getInventory().setContents(ItemStackSerializerUtil.itemStackArrayFromBase64(container.getItems()));
         } catch (IOException e) {
             e.printStackTrace();
         }

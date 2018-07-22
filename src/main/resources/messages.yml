@@ -29,18 +29,27 @@ AddContainerLootableCommandEmpty: '&eYou cannot add an empty container!'
 
 AddContainerLootableCommandAlreadyRegistered: '&eThat container is already registered.'
 
-SetRefillTimeContainerNotNumber: 'The refill time for this container must be a number of seconds.'
+SetRefillTimeContainerNotNumber: '&eThe refill time for this container must be a number of seconds.'
 
-SetRefillTimeContainerNoNumber: 'You need to provide the number of seconds for the refill time.'
+SetRefillTimeContainerNoNumber: '&eYou need to provide the number of seconds for the refill time.'
 
-SetRefillTimeContainerSuccess: 'You have successfully changed the refill time.'
+SetRefillTimeContainerSuccess: '&aYou have successfully changed the refill time.'
 
 SetRefillTimeContainerCommandFailNotContainer: '&eThat container is not currently registered.'
+
+SetHidesContainerNotBoolean: '&eThe value must be a boolean (true\false).'
+
+SetHidesContainerNoBoolean: '&eYou need to provide whether the container hides.'
+
+SetHidesContainerSuccess: "&aYou have successfully changed the contianer's hiding state."
+
+SetHidesContainerCommandFailNotContainer: '&eThat container is not currently registered.'
 
 CheckContainerLootableFalse: '&eThat container has not been registered or is not in a maze enabled world.'
 
 # Placeholders available:
 # %REFILL% - Refill time for the container
+# %HIDDEN% - Whether the container hides when empty
 CheckContainerLootableTrue: '&aThat container is a registered container within the maze and has a refill time of %REFILL% seconds.'
 
 ContainerTPNoLootable: '&eYou need to provide the lootable to teleport to.'

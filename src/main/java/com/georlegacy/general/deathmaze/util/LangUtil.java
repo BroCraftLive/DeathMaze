@@ -49,6 +49,10 @@ public class LangUtil {
         SET_REFILL_TIME_CONTAINER_NO_NUMBER = isInitialised ? format(config.getString("SetRefillTimeContainerNoNumber")) : noMsg;
         SET_REFILL_TIME_CONTAINER_SUCCESS = isInitialised ? format(config.getString("SetRefillTimeContainerSuccess")) : noMsg;
         SET_REFILL_TIME_CONTAINER_COMMAND_FAIL_NOT_CONTAINER = isInitialised ? format(config.getString("SetRefillTimeContainerCommandFailNotContainer")) : noMsg;
+        SET_HIDES_CONTAINER_NOT_BOOLEAN = isInitialised ? format(config.getString("SetHidesContainerNotBoolean")) : noMsg;
+        SET_HIDES_CONTAINER_NO_BOOLEAN = isInitialised ? format(config.getString("SetHidesContainerNoBoolean")) : noMsg;
+        SET_HIDES_CONTAINER_SUCCESS = isInitialised ? format(config.getString("SetHidesContainerSuccess")) : noMsg;
+        SET_HIDES_CONTAINER_COMMAND_FAIL_NOT_CONTAINER = isInitialised ? format(config.getString("SetHidesContainerCommandFailNotContainer")) : noMsg;
         CHECK_CONTAINER_LOOTABLE_FALSE = isInitialised ? format(config.getString("CheckContainerLootableFalse")) : noMsg;
         CHECK_CONTAINER_LOOTABLE_TRUE = isInitialised ? format(config.getString("CheckContainerLootableTrue")) : noMsg;
         CONTAINERS_LIST_NOT_PAGE = isInitialised ? format(config.getString("ContainersListNotPage")) : noMsg;
@@ -161,6 +165,14 @@ public class LangUtil {
     public static String SET_REFILL_TIME_CONTAINER_SUCCESS;
 
     public static String SET_REFILL_TIME_CONTAINER_COMMAND_FAIL_NOT_CONTAINER;
+
+    public static String SET_HIDES_CONTAINER_NOT_BOOLEAN;
+
+    public static String SET_HIDES_CONTAINER_NO_BOOLEAN;
+
+    public static String SET_HIDES_CONTAINER_SUCCESS;
+
+    public static String SET_HIDES_CONTAINER_COMMAND_FAIL_NOT_CONTAINER;
 
     public static String CHECK_CONTAINER_LOOTABLE_FALSE;
 
@@ -302,7 +314,8 @@ public class LangUtil {
 
     public static String CHECK_CONTAINER_LOOTABLE_TRUE(ContainerLootable container) {
         return CHECK_CONTAINER_LOOTABLE_TRUE
-                .replaceAll("%REFILL%", String.valueOf(container.getRefillSeconds()));
+                .replaceAll("%REFILL%", String.valueOf(container.getRefillSeconds()))
+                .replaceAll("%HIDDEN%", String.valueOf(container.isHiddenWhenEmpty()));
     }
 
     public static String REGION_CHECK_SUCCESS(RegionExplorable region) {

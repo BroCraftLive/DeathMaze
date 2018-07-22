@@ -2,6 +2,7 @@ package com.georlegacy.general.deathmaze.commands;
 
 import com.georlegacy.general.deathmaze.DeathMaze;
 import com.georlegacy.general.deathmaze.util.LangUtil;
+import com.georlegacy.general.deathmaze.util.MazeEncoder;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -14,6 +15,7 @@ public class ResetCommand {
     public boolean onCommand(CommandSender sender, org.bukkit.command.Command command, String label, String[] args) {
         Player player = (Player) sender;
 
+        DeathMaze.getInstance().reloadAll();
         if (args.length == 1) {
             player.sendMessage(LangUtil.PREFIX + LangUtil.PLAYER_RESET_STATS_NO_PLAYER);
             return true;
@@ -22,7 +24,7 @@ public class ResetCommand {
             player.sendMessage(LangUtil.PREFIX + LangUtil.PLAYER_RESET_STATS_NOT_PLAYER);
             return true;
         }
-        File file = new File(DeathMaze.getInstance().getDataFolder() + File.separator + "players", DeathMaze.getInstance().getMaze().getUuids().get(args[1]) + ".dat");
+        File file = new File(DeathMaze.getInstance().getDataFolder() + File.separator + "players" + File.separator + DeathMaze.getInstance().getMaze().getUuids().get(args[1]) + ".dat");
         if (!file.exists()) {
             player.sendMessage(LangUtil.PREFIX + LangUtil.PLAYER_RESET_STATS_NOT_PLAYER);
             return true;
