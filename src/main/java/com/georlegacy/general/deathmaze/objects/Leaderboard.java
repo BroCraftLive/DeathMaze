@@ -19,6 +19,8 @@ import java.util.*;
 
 public class Leaderboard implements Serializable {
 
+    static final long serialVersionUID = 4389267980455778936L;
+
     @Getter
     @Setter
     private LeaderboardType type;

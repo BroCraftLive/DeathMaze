@@ -13,6 +13,8 @@ import java.util.List;
 
 public @Data class PlayerStats implements Serializable {
 
+    static final long serialVersionUID = 5436645636546343654L;
+
     public PlayerStats() {
         regionsExplored = new ArrayList<RegionExplorable>();
         containersLooted = new ArrayList<ContainerLootable>();

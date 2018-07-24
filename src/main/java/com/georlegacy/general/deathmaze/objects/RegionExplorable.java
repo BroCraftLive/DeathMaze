@@ -13,6 +13,8 @@ import java.util.LinkedList;
 
 public class RegionExplorable implements Serializable {
 
+    static final long serialVersionUID = 4765639815758934658L;
+
     protected RegionExplorable() {}
 
     public RegionExplorable(String name, Location pos1, Location pos2) {

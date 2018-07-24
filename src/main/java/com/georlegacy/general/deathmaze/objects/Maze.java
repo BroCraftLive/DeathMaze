@@ -13,6 +13,8 @@ import java.util.List;
 
 public class Maze implements Serializable {
 
+    static final long serialVersionUID = 4628974892234788782L;
+
     @Getter @Setter private SerializableLocation spawn;
 
     @Getter private List<ContainerLootable> containers;
