@@ -7,10 +7,7 @@ import com.georlegacy.general.deathmaze.objects.enumeration.LeaderboardType;
 import com.georlegacy.general.deathmaze.objects.pagination.EmptyPaginationPage;
 import com.georlegacy.general.deathmaze.objects.pagination.PaginationPage;
 import com.georlegacy.general.deathmaze.objects.pagination.PaginationSet;
-import com.georlegacy.general.deathmaze.util.ColorUtil;
-import com.georlegacy.general.deathmaze.util.LangUtil;
-import com.georlegacy.general.deathmaze.util.NumberFormatter;
-import com.georlegacy.general.deathmaze.util.StatsEncoder;
+import com.georlegacy.general.deathmaze.util.*;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.HoverEvent;
@@ -370,7 +367,7 @@ public class LeaderboardCommand {
                     storedSet = DeathMaze.getInstance().getPlayerLeaderboardDistanceViewLists().get(player.getUniqueId().toString());
                 }
                 List<String> leaderboardEntries = new ArrayList<String>();
-                allStats.forEach(stats -> leaderboardEntries.add(stats.getName() + " - " + NumberFormatter.format(stats.getDistance())));
+                allStats.forEach(stats -> leaderboardEntries.add(stats.getName() + " - " + DistanceFormatter.format(stats.getDistance())));
                 if (leaderboardEntries.size() == 0) {
                     player.sendMessage(LangUtil.PREFIX + LangUtil.LEADERBOARD_LIST_DISTANCE_NO_ENTRIES);
                     return true;
@@ -579,50 +576,61 @@ public class LeaderboardCommand {
         }
         if (args[1].equalsIgnoreCase("remove")) {
             if (args.length == 2) {
-                //TODO provide name of leaderboard to remove dude
+                player.sendMessage(LangUtil.PREFIX + LangUtil.LEADERBOARD_REMOVE_NO_LEADERBOARD);
                 return true;
             }
             for (Leaderboard board : DeathMaze.getInstance().getMaze().getLeaderboards()) {
                 if (args[2].equalsIgnoreCase(board.getName())) {
                     DeathMaze.getInstance().getMaze().getLeaderboards().remove(board);
-                    //TODO success
+                    board.delete();
+                    player.sendMessage(LangUtil.PREFIX + LangUtil.LEADERBOARD_REMOVE_SUCCESS);
                     return true;
                 }
             }
-            //TODO not a leaderboard
+            player.sendMessage(LangUtil.PREFIX + LangUtil.LEADERBOARD_REMOVE_NOT_LEADERBOARD);
             return true;
         }
         if (args[1].equalsIgnoreCase("add")) {
-            if (args.length < 5) {
-                //TODO provide name, type, and length of leaderboard to create
+            if (args.length < 6) {
+                player.sendMessage(LangUtil.PREFIX + LangUtil.LEADERBOARD_ADD_NO_ARGS);
                 return true;
             }
             for (Leaderboard board : DeathMaze.getInstance().getMaze().getLeaderboards()) {
                 if (args[2].equalsIgnoreCase(board.getName())) {
-                    //TODO already exists
+                    player.sendMessage("exists");
                     return true;
                 }
             }
             LeaderboardType typeToUse;
+            ChatColor colorToUse;
             int lengthToUse;
             try {
                 typeToUse = LeaderboardType.valueOf(args[3].toUpperCase());
                 lengthToUse = Integer.parseInt(args[4]);
             } catch (NumberFormatException ex) {
-                //TODO not a number for length
+                player.sendMessage(LangUtil.PREFIX + LangUtil.LEADERBOARD_ADD_LENGTH_NOT_NUMBER);
                 return true;
             } catch (IllegalArgumentException ex) {
-                //TODO invalid type
+                player.sendMessage(LangUtil.PREFIX + LangUtil.LEADERBOARD_ADD_TYPE_NOT_TYPE);
                 return true;
             }
-            DeathMaze.getInstance().getMaze().getLeaderboards().add(new Leaderboard(
+            try {
+                colorToUse = ChatColor.getByChar(args[5]);
+            } catch (IllegalArgumentException ex) {
+                player.sendMessage(LangUtil.PREFIX + LangUtil.LEADERBOARD_ADD_COLOR_NOT_COLOR);
+                return true;
+            }
+            Leaderboard leaderboard = new Leaderboard(
                     typeToUse,
                     player.getLocation(),
                     lengthToUse,
                     ColorUtil.format("&cDeathMaze Leaderboard for &e" + typeToUse.getFriendlyName()),
+                    colorToUse,
                     args[2]
-            ));
-            //TODO success
+            );
+            DeathMaze.getInstance().getMaze().getLeaderboards().add(leaderboard);
+            leaderboard.update();
+            player.sendMessage(LangUtil.PREFIX + LangUtil.LEADERBOARD_ADD_SUCCESS);
             return true;
         }
         if (args[1].equalsIgnoreCase("list")) {

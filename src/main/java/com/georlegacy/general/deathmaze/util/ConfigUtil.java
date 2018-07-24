@@ -1,6 +1,7 @@
 package com.georlegacy.general.deathmaze.util;
 
 import com.georlegacy.general.deathmaze.DeathMaze;
+import com.georlegacy.general.deathmaze.objects.Leaderboard;
 import com.georlegacy.general.deathmaze.objects.PlayerStats;
 import com.georlegacy.general.deathmaze.objects.RegionExplorable;
 import com.georlegacy.general.deathmaze.objects.enumeration.Level;
@@ -118,6 +119,19 @@ public class ConfigUtil {
             i++;
         }
         return scores.entrySet();
+    }
+
+    public String getLeaderboardEntryFormat(Leaderboard leaderboard, PlayerStats stats) {
+        return ColorUtil.format(this.config.getString("LeaderboardEntryFormat")
+                .replaceAll("%COLOR%", leaderboard.getColor().toString())
+                .replaceAll("%NAME%", stats.getName())
+                .replaceAll("%NAMEUPPER%", stats.getName().toUpperCase())
+                .replaceAll("%NAMELOWER%", stats.getName().toLowerCase())
+                .replaceAll("%VALUE%", TypeUtil.getValue(leaderboard.getType(), stats))
+                .replaceAll("%TYPE%", leaderboard.getType().getFriendlyName())
+                .replace("%TYPEUPPER%", leaderboard.getType().name().toUpperCase())
+                .replace("%TYPELOWER%", leaderboard.getType().name().toLowerCase()));
+
     }
 
     public Material getPreviewMaterial() {

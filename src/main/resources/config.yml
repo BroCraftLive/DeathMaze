@@ -67,6 +67,17 @@ SpectatingScoreboardFormat:
 - '&c&lSPECTATING'
 - '   '
 
+# Format for entries in the hologram leaderboards
+# %COLOR% - The color for the leaderboard
+# %NAME% - The player's name
+# %NAMEUPPER% - As above in uppercase
+# %NAMELOWER% - As above in lowercase
+# %VALUE% - The value from the type that the leaderboard is sorted by
+# %TYPE% - The type that the leaderboard is sorted by
+# %TYPEUPPER% - As above in uppercase
+# %TYPELOWER% - As above in lowercase
+LeaderboardEntryFormat: '%COLOR%%NAMEUPPER% &7- %COLOR%%VALUE% %TYPEUPPER%'
+
 # The block used in previewing regions (CLIENT SIDE PREVIEW)
 PreviewBlock: GLASS
 

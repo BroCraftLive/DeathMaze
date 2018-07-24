@@ -200,3 +200,19 @@ LeaderboardsListNotPage: '&eThat is not a valid page.'
 LeaderboardsListNoLeaderboards: '&eThere are currently no leaderboards configured.'
 
 LeaderboardsListHeader: '&aLeaderboards:'
+
+LeaderboardRemoveNoLeaderboard: '&eYou need to provide a leaderboard to remove.'
+
+LeaderboardRemoveNotLeaderboard: '&eThat is not a valid leaderboard.'
+
+LeaderboardRemoveSuccess: '&aThe leaderboard has been removed successfully.'
+
+LeaderboardAddNoArgs: '&eYou need to provide a leaderboard type, the length of the leaderboard, and a color code &c( eg 4 ).'
+
+LeaderboardAddLengthNotNumber: '&eThe length you have provided is not a valid number.'
+
+LeaderboardAddTypeNotType: '&eThe type you have provided is not a valid type. &c(Kills, Deaths, Level, XP, Distance, Regions, Lootables)'
+
+LeaderboardAddColorNotColor: '&eThe color you have provided is not a valid color. &c( eg f )'
+
+LeaderboardAddSuccess: '&aThe leaderboard has been added successfully.'
