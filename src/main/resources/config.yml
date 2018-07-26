@@ -78,6 +78,14 @@ SpectatingScoreboardFormat:
 # %TYPELOWER% - As above in lowercase
 LeaderboardEntryFormat: '%COLOR%%NAMEUPPER% &7- %COLOR%%VALUE% %TYPEUPPER%'
 
+# Types that do not show their name in leaderboards when below
+NoIndicatorTypesLeaderboard:
+- 'DISTANCE'
+
+# Seconds in between automatic leaderboard updates
+# For no updates, use 0
+LeaderboardUpdateInterval: 10
+
 # The block used in previewing regions (CLIENT SIDE PREVIEW)
 PreviewBlock: GLASS
 

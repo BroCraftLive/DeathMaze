@@ -1,6 +1,7 @@
 package com.georlegacy.general.deathmaze.commands;
 
 import com.georlegacy.general.deathmaze.DeathMaze;
+import com.georlegacy.general.deathmaze.objects.ContainerLootable;
 import com.georlegacy.general.deathmaze.objects.Leaderboard;
 import com.georlegacy.general.deathmaze.objects.PlayerStats;
 import com.georlegacy.general.deathmaze.objects.enumeration.LeaderboardType;
@@ -14,6 +15,7 @@ import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -573,6 +575,22 @@ public class LeaderboardCommand {
                 return true;
             }
 
+        }
+        if (args[1].equalsIgnoreCase("tp")) {
+            if (args.length == 2) {
+                player.sendMessage(LangUtil.PREFIX + LangUtil.LEADERBOARD_TP_NO_LEADERBOARD);
+                return true;
+            }
+            for (Leaderboard leaderboard : DeathMaze.getInstance().getMaze().getLeaderboards()) {
+                Location loc = leaderboard.getLocation().getLocation();
+                if (leaderboard.getName().equalsIgnoreCase(args[2])) {
+                    player.teleport(loc);
+                    player.sendMessage(LangUtil.PREFIX + LangUtil.LEADERBOARD_TP_SUCCESS);
+                    return true;
+                }
+            }
+            player.sendMessage(LangUtil.PREFIX + LangUtil.LEADERBOARD_TP_NOT_LEADERBOARD);
+            return true;
         }
         if (args[1].equalsIgnoreCase("remove")) {
             if (args.length == 2) {

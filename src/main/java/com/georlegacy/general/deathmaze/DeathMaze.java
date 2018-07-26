@@ -10,6 +10,7 @@ import com.georlegacy.general.deathmaze.objects.RegionExplorable;
 import com.georlegacy.general.deathmaze.objects.enumeration.MazeMode;
 import com.georlegacy.general.deathmaze.objects.pagination.PaginationSet;
 import com.georlegacy.general.deathmaze.tasks.Refill;
+import com.georlegacy.general.deathmaze.tasks.UpdateLeaderboards;
 import com.georlegacy.general.deathmaze.util.ConfigUtil;
 import com.georlegacy.general.deathmaze.util.LangUtil;
 import com.georlegacy.general.deathmaze.util.MazeEncoder;
@@ -48,6 +49,8 @@ public final class DeathMaze extends JavaPlugin {
     @Getter private ConfigUtil configuration;
     @Getter private WorldEditPlugin worldedit;
 
+    private int updatesTaskId = 0;
+
     public static DeathMaze getInstance() {
         return getPlugin(DeathMaze.class);
     }
@@ -80,6 +83,7 @@ public final class DeathMaze extends JavaPlugin {
         configuration = ConfigUtil.get();
         worldedit = (WorldEditPlugin) this.getServer().getPluginManager().getPlugin("WorldEdit");
 
+        startUpdates();
         startRefills();
 
         if (getServer().getPluginManager().isPluginEnabled("PlaceholderAPI")) {
@@ -121,14 +125,20 @@ public final class DeathMaze extends JavaPlugin {
         maze = MazeEncoder.decode();
         configuration = ConfigUtil.get();
         LangUtil.init();
+        startUpdates();
         startRefills();
         checkPlayers();
     }
 
+    private void startUpdates() {
+        if (updatesTaskId != 0)
+            getServer().getScheduler().cancelTask(updatesTaskId);
+        UpdateLeaderboards update = new UpdateLeaderboards();
+        updatesTaskId = getServer().getScheduler().scheduleSyncRepeatingTask(this, update, 5, getConfiguration().getLeaderboardUpdateInterval() * 20);
+    }
+
     private void startRefills() {
-        for (int id : refills.keySet()) {
-            getServer().getScheduler().cancelTask(id);
-        }
+        refills.keySet().forEach(getServer().getScheduler()::cancelTask);
         refills.clear();
         for (ContainerLootable c : maze.getContainers()) {
             Refill refill = new Refill(this);

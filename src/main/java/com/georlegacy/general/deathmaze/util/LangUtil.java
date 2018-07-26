@@ -137,6 +137,9 @@ public class LangUtil {
             LEADERBOARD_ADD_TYPE_NOT_TYPE = isInitialised ? format(config.getString("LeaderboardAddTypeNotType")) : noMsg;
             LEADERBOARD_ADD_COLOR_NOT_COLOR = isInitialised ? format(config.getString("LeaderboardAddColorNotColor")) : noMsg;
             LEADERBOARD_ADD_SUCCESS = isInitialised ? format(config.getString("LeaderboardAddSuccess")) : noMsg;
+            LEADERBOARD_TP_NO_LEADERBOARD = isInitialised ? format(config.getString("LeaderboardTpNoLeaderboard")) : noMsg;
+            LEADERBOARD_TP_NOT_LEADERBOARD = isInitialised ? format(config.getString("LeaderboardTpNotLeaderboard")) : noMsg;
+            LEADERBOARD_TP_SUCCESS = isInitialised ? format(config.getString("LeaderboardTpSuccess")) : noMsg;
         } catch (Exception ex) {
             Bukkit.getLogger().severe("There was a fatal error loading the messages.yml file, please delete the file and RESTART your server.");
         }
@@ -356,6 +359,12 @@ public class LangUtil {
     public static String LEADERBOARD_ADD_COLOR_NOT_COLOR;
 
     public static String LEADERBOARD_ADD_SUCCESS;
+
+    public static String LEADERBOARD_TP_NO_LEADERBOARD;
+
+    public static String LEADERBOARD_TP_NOT_LEADERBOARD;
+
+    public static String LEADERBOARD_TP_SUCCESS;
 
     public static String CHECK_CONTAINER_LOOTABLE_TRUE(ContainerLootable container) {
         return CHECK_CONTAINER_LOOTABLE_TRUE

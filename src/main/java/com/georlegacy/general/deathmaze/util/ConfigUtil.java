@@ -122,7 +122,13 @@ public class ConfigUtil {
     }
 
     public String getLeaderboardEntryFormat(Leaderboard leaderboard, PlayerStats stats) {
-        return ColorUtil.format(this.config.getString("LeaderboardEntryFormat")
+        String initial = this.config.getString("LeaderboardEntryFormat");
+        String finish = getNoIndicatorTypesLeaderboard().contains(leaderboard.getType().getFriendlyName().toUpperCase())
+                ? initial
+                .replaceAll("%TYPE%", "")
+                .replaceAll("%TYPEUPPER%", "")
+                .replaceAll("%TYPELOWER%", "") : initial;
+        return ColorUtil.format(finish)
                 .replaceAll("%COLOR%", leaderboard.getColor().toString())
                 .replaceAll("%NAME%", stats.getName())
                 .replaceAll("%NAMEUPPER%", stats.getName().toUpperCase())
@@ -130,8 +136,15 @@ public class ConfigUtil {
                 .replaceAll("%VALUE%", TypeUtil.getValue(leaderboard.getType(), stats))
                 .replaceAll("%TYPE%", leaderboard.getType().getFriendlyName())
                 .replace("%TYPEUPPER%", leaderboard.getType().name().toUpperCase())
-                .replace("%TYPELOWER%", leaderboard.getType().name().toLowerCase()));
+                .replace("%TYPELOWER%", leaderboard.getType().name().toLowerCase());
+    }
 
+    public Set<String> getNoIndicatorTypesLeaderboard() {
+        return new HashSet<String>(this.config.getStringList("NoIndicatorTypesLeaderboard"));
+    }
+
+    public int getLeaderboardUpdateInterval() {
+        return this.config.getInt("LeaderboardUpdateInterval");
     }
 
     public Material getPreviewMaterial() {

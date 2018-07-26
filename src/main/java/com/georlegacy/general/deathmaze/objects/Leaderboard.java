@@ -11,7 +11,9 @@ import lombok.Setter;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.io.Serializable;
@@ -77,10 +79,20 @@ public class Leaderboard implements Serializable {
 
         Location current;
         current = bottom;
+
+
         current.getWorld().getNearbyEntities(current, 20, 20, 20).stream().filter(
                 entity -> (entity instanceof LivingEntity)
                         && (entity.getScoreboardTags().contains(this.name + "-leaderboard")))
                 .forEach(entity -> ((LivingEntity) entity).remove());
+// ignore below
+//        for (Entity entity : current.getWorld().getNearbyEntities(current, 20,20,20)) {
+//            if (entity instanceof LivingEntity && entity.getScoreboardTags().contains(this.name + "-leaderboard")) {
+//                LivingEntity livingEntity = (LivingEntity) entity;
+//                livingEntity.remove();
+//            }
+//        }
+
         for (String line : reversedLines) {
             ArmorStand stand = current.getWorld().spawn(current, ArmorStand.class);
             stand.setCustomNameVisible(true);
@@ -94,6 +106,8 @@ public class Leaderboard implements Serializable {
     }
 
     public synchronized int update() {
+        DeathMaze.getInstance().stats.values().forEach(StatsEncoder::encode);
+
         List<PlayerStats> allStats = new LinkedList<PlayerStats>();
         for (File file : Objects.requireNonNull(new File(DeathMaze.getInstance().getDataFolder() + File.separator + "players" + File.separator).listFiles())) {
             allStats.add(StatsEncoder.decode(file));
