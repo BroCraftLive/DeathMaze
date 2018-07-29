@@ -650,7 +650,7 @@ public class LeaderboardCommand {
             player.sendMessage(LangUtil.PREFIX + LangUtil.LEADERBOARD_ADD_SUCCESS);
             return true;
         }
-        if (args[2].equalsIgnoreCase("set")) {
+        if (args[1].equalsIgnoreCase("set")) {
             if (args.length < 4) {
                 player.sendMessage(LangUtil.PREFIX + LangUtil.HELP_HEADER);
                 player.sendMessage(ColorUtil.format("&c/deathmaze leaderboard set <leaderboard> header <header> - &7Sets the header for the leaderboard."));
