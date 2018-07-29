@@ -222,3 +222,9 @@ LeaderboardTpNoLeaderboard: '&eYou need to provide a leaderboard to teleport to.
 LeaderboardTpNotLeaderboard: '&eThat is not a valid leaderboard.'
 
 LeaderboardTpSuccess: '&aTeleporting...'
+
+SetLeaderboardNotLeaderboard: '&eThat is not a valid leaderboard.'
+
+SetLeaderboardHeaderNoHeader: '&eYou need to provide a new header.'
+
+SetLeaderboardHeaderSuccess: '&aThe header for the leaderboar dhas successfully been changed.'

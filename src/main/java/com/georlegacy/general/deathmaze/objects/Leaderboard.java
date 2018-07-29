@@ -11,13 +11,14 @@ import lombok.Setter;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
 
 public class Leaderboard implements Serializable {
 
@@ -47,7 +48,7 @@ public class Leaderboard implements Serializable {
     private String name;
 
     @Getter
-    List<PlayerStats> statsList;
+    private List<PlayerStats> statsList;
 
     public Leaderboard(LeaderboardType type, Location loc, int length, String header, ChatColor color, String name) {
         this.type = type;

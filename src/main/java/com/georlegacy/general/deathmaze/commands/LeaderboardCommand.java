@@ -1,7 +1,6 @@
 package com.georlegacy.general.deathmaze.commands;
 
 import com.georlegacy.general.deathmaze.DeathMaze;
-import com.georlegacy.general.deathmaze.objects.ContainerLootable;
 import com.georlegacy.general.deathmaze.objects.Leaderboard;
 import com.georlegacy.general.deathmaze.objects.PlayerStats;
 import com.georlegacy.general.deathmaze.objects.enumeration.LeaderboardType;
@@ -649,6 +648,87 @@ public class LeaderboardCommand {
             DeathMaze.getInstance().getMaze().getLeaderboards().add(leaderboard);
             leaderboard.update();
             player.sendMessage(LangUtil.PREFIX + LangUtil.LEADERBOARD_ADD_SUCCESS);
+            return true;
+        }
+        if (args[2].equalsIgnoreCase("set")) {
+            if (args.length < 4) {
+                player.sendMessage(LangUtil.PREFIX + LangUtil.HELP_HEADER);
+                player.sendMessage(ColorUtil.format("&c/deathmaze leaderboard set <leaderboard> header <header> - &7Sets the header for the leaderboard."));
+                player.sendMessage(ColorUtil.format("&c/deathmaze leaderboard set <leaderboard> color <color code> - &7Sets the color for the leaderboard."));
+                player.sendMessage(ColorUtil.format("&c/deathmaze leaderboard set <leaderboard> type <type> - &7Sets the type for the leaderboard."));
+                player.sendMessage(ColorUtil.format("&c/deathmaze leaderboard set <leaderboard> length <length> - &7Sets the length of the leaderboard."));
+                return true;
+            }
+            for (Leaderboard leaderboard : DeathMaze.getInstance().getMaze().getLeaderboards()) {
+                if (leaderboard.getName().equalsIgnoreCase(args[2])) {
+                    if (args[3].equalsIgnoreCase("header")) {
+                        if (args.length < 5) {
+                            player.sendMessage(LangUtil.PREFIX + LangUtil.SET_LEADERBOARD_HEADER_NO_HEADER);
+                            return true;
+                        }
+                        StringBuilder header = new StringBuilder();
+                        Arrays.asList(args).subList(4, args.length).forEach(header::append);
+                        leaderboard.setHeader(header.toString());
+                        player.sendMessage(LangUtil.PREFIX + LangUtil.SET_LEADERBOARD_HEADER_SUCCESS);
+                        return true;
+                    }
+                    if (args[3].equalsIgnoreCase("color")) {
+                        if (args.length < 5) {
+                            player.sendMessage(LangUtil.PREFIX + LangUtil.SET_REGION_SOUND_NO_SOUND);
+                            return true;
+                        }
+                        ChatColor color;
+                        try {
+                            color = ChatColor.getByChar(args[4]);
+                        } catch (IllegalArgumentException ex) {
+                            player.sendMessage(LangUtil.PREFIX);
+                            return true;
+                        }
+                        leaderboard.setColor(color);
+                        player.sendMessage(LangUtil.PREFIX + LangUtil.SET_REGION_SOUND_SUCCESS);
+                        return true;
+                    }
+                    if (args[3].equalsIgnoreCase("type")) {
+                        if (args.length < 5) {
+                            player.sendMessage(LangUtil.PREFIX + LangUtil.SET_REGION_SOUND_NO_SOUND);
+                            return true;
+                        }
+                        LeaderboardType type;
+                        try {
+                            type = LeaderboardType.valueOf(args[4]);
+                        } catch (IllegalArgumentException ex) {
+                            player.sendMessage(LangUtil.PREFIX);
+                            return true;
+                        }
+                        leaderboard.setType(type);
+                        player.sendMessage(LangUtil.PREFIX + LangUtil.SET_REGION_SOUND_SUCCESS);
+                        return true;
+                    }
+                    if (args[3].equalsIgnoreCase("length")) {
+                        if (args.length < 5) {
+                            player.sendMessage(LangUtil.PREFIX + LangUtil.SET_REGION_SOUND_NO_SOUND);
+                            return true;
+                        }
+                        int length;
+                        try {
+                            length = Integer.parseInt(args[4]);
+                        } catch (NumberFormatException ex) {
+                            player.sendMessage(LangUtil.PREFIX);
+                            return true;
+                        }
+                        leaderboard.setLength(length);
+                        player.sendMessage(LangUtil.PREFIX + LangUtil.SET_REGION_SOUND_SUCCESS);
+                        return true;
+                    }
+                    player.sendMessage(LangUtil.PREFIX + LangUtil.HELP_HEADER);
+                    player.sendMessage(ColorUtil.format("&c/deathmaze leaderboard set <leaderboard> header <header> - &7Sets the header for the leaderboard."));
+                    player.sendMessage(ColorUtil.format("&c/deathmaze leaderboard set <leaderboard> color <color code> - &7Sets the color for the leaderboard."));
+                    player.sendMessage(ColorUtil.format("&c/deathmaze leaderboard set <leaderboard> type <type> - &7Sets the type for the leaderboard."));
+                    player.sendMessage(ColorUtil.format("&c/deathmaze leaderboard set <leaderboard> length <length> - &7Sets the length of the leaderboard."));
+                    return true;
+                }
+            }
+            player.sendMessage(LangUtil.PREFIX + LangUtil.SET_LEADERBOARD_NOT_LEADERBOARD);
             return true;
         }
         if (args[1].equalsIgnoreCase("list")) {
