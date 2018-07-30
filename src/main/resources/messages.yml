@@ -227,4 +227,22 @@ SetLeaderboardNotLeaderboard: '&eThat is not a valid leaderboard.'
 
 SetLeaderboardHeaderNoHeader: '&eYou need to provide a new header.'
 
-SetLeaderboardHeaderSuccess: '&aThe header for the leaderboar dhas successfully been changed.'
+SetLeaderboardHeaderSuccess: '&aThe header for the leaderboard has successfully been changed.'
+
+SetLeaderboardColorNoColor: '&eYou need to provide a new color.'
+
+SetLeaderboardColorNotColor: '&eYou need to provide a valid color.'
+
+SetLeaderboardColorSuccess: '&aThe color of that leaderboard has successfully been set.'
+
+SetLeaderboardTypeNoType: '&eYou need to provide a new type for the leaderboard.'
+
+SetLeaderboardTypeNotType: '&eYou need to provide a valid type for the leaderboard.'
+
+SetLeaderboardTypeSuccess: '&aYou have successfully set the type for the leaderboard.'
+
+SetLeaderboardLengthNoLength: '&eYou need to provide a new length for the leaderboard.'
+
+SetLeaderboardLengthNotNumber: '&eThe length needs to be a valid integer.'
+
+SetLeaderboardLengthSuccess: '&aYou have successfully set the length for that leaderboard.'

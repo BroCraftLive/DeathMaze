@@ -11,6 +11,7 @@ import static com.georlegacy.general.deathmaze.util.ColorUtil.format;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.concurrent.ScheduledExecutorService;
 
 public class LangUtil {
 
@@ -143,7 +144,15 @@ public class LangUtil {
             SET_LEADERBOARD_NOT_LEADERBOARD = isInitialised ? format(config.getString("SetLeaderboardNotLeaderboard")) : noMsg;
             SET_LEADERBOARD_HEADER_NO_HEADER = isInitialised ? format(config.getString("SetLeaderboardHeaderNoHeader")) : noMsg;
             SET_LEADERBOARD_HEADER_SUCCESS = isInitialised ? format(config.getString("SetLeaderboardHeaderSuccess")) : noMsg;
-
+            SET_LEADERBOARD_COLOR_NO_COLOR = isInitialised ? format(config.getString("SetLeaderboardColorNoColor")) : noMsg;
+            SET_LEADERBOARD_COLOR_NOT_COLOR = isInitialised ? format(config.getString("SetLeaderboardColorNotColor")) : noMsg;
+            SET_LEADERBOARD_COLOR_SUCCESS = isInitialised ? format(config.getString("SetLeaderboardColorSuccess")) : noMsg;
+            SET_LEADERBOARD_TYPE_NO_TYPE = isInitialised ? format(config.getString("SetLeaderboardTypeNoType")) : noMsg;
+            SET_LEADERBOARD_TYPE_NOT_TYPE = isInitialised ? format(config.getString("SetLeaderboardTypeNotType")) : noMsg;
+            SET_LEADERBOARD_TYPE_SUCCESS = isInitialised ? format(config.getString("SetLeaderboardTypeSuccess")) : noMsg;
+            SET_LEADERBOARD_LENGTH_NO_LENGTH = isInitialised ? format(config.getString("SetLeaderboardLengthNoLength")) : noMsg;
+            SET_LEADERBOARD_LENGTH_NOT_NUMBER = isInitialised ? format(config.getString("SetLeaderboardLengthNotNumber")) : noMsg;
+            SET_LEADERBOARD_LENGTH_SUCCESS = isInitialised ? format(config.getString("SetLeaderboardLengthSuccess")) : noMsg;
         } catch (Exception ex) {
             Bukkit.getLogger().severe("There was a fatal error loading the messages.yml file, please delete the file and RESTART your server.");
         }
@@ -375,6 +384,24 @@ public class LangUtil {
     public static String SET_LEADERBOARD_HEADER_NO_HEADER;
 
     public static String SET_LEADERBOARD_HEADER_SUCCESS;
+
+    public static String SET_LEADERBOARD_COLOR_NO_COLOR;
+
+    public static String SET_LEADERBOARD_COLOR_NOT_COLOR;
+
+    public static String SET_LEADERBOARD_COLOR_SUCCESS;
+
+    public static String SET_LEADERBOARD_TYPE_NO_TYPE;
+
+    public static String SET_LEADERBOARD_TYPE_NOT_TYPE;
+
+    public static String SET_LEADERBOARD_TYPE_SUCCESS;
+
+    public static String SET_LEADERBOARD_LENGTH_NO_LENGTH;
+
+    public static String SET_LEADERBOARD_LENGTH_NOT_NUMBER;
+
+    public static String SET_LEADERBOARD_LENGTH_SUCCESS;
 
     public static String CHECK_CONTAINER_LOOTABLE_TRUE(ContainerLootable container) {
         return CHECK_CONTAINER_LOOTABLE_TRUE

@@ -7,6 +7,7 @@ import com.georlegacy.general.deathmaze.objects.enumeration.LeaderboardType;
 import com.georlegacy.general.deathmaze.objects.pagination.EmptyPaginationPage;
 import com.georlegacy.general.deathmaze.objects.pagination.PaginationPage;
 import com.georlegacy.general.deathmaze.objects.pagination.PaginationSet;
+import com.georlegacy.general.deathmaze.objects.util.DelimitedStringBuilder;
 import com.georlegacy.general.deathmaze.util.*;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ClickEvent;
@@ -666,7 +667,7 @@ public class LeaderboardCommand {
                             player.sendMessage(LangUtil.PREFIX + LangUtil.SET_LEADERBOARD_HEADER_NO_HEADER);
                             return true;
                         }
-                        StringBuilder header = new StringBuilder();
+                        DelimitedStringBuilder header = new DelimitedStringBuilder();
                         Arrays.asList(args).subList(4, args.length).forEach(header::append);
                         leaderboard.setHeader(header.toString());
                         player.sendMessage(LangUtil.PREFIX + LangUtil.SET_LEADERBOARD_HEADER_SUCCESS);
@@ -674,50 +675,50 @@ public class LeaderboardCommand {
                     }
                     if (args[3].equalsIgnoreCase("color")) {
                         if (args.length < 5) {
-                            player.sendMessage(LangUtil.PREFIX + LangUtil.SET_REGION_SOUND_NO_SOUND);
+                            player.sendMessage(LangUtil.PREFIX + LangUtil.SET_LEADERBOARD_COLOR_NO_COLOR);
                             return true;
                         }
                         ChatColor color;
                         try {
                             color = ChatColor.getByChar(args[4]);
                         } catch (IllegalArgumentException ex) {
-                            player.sendMessage(LangUtil.PREFIX);
+                            player.sendMessage(LangUtil.PREFIX + LangUtil.SET_LEADERBOARD_COLOR_NOT_COLOR);
                             return true;
                         }
                         leaderboard.setColor(color);
-                        player.sendMessage(LangUtil.PREFIX + LangUtil.SET_REGION_SOUND_SUCCESS);
+                        player.sendMessage(LangUtil.PREFIX + LangUtil.SET_LEADERBOARD_COLOR_SUCCESS);
                         return true;
                     }
                     if (args[3].equalsIgnoreCase("type")) {
                         if (args.length < 5) {
-                            player.sendMessage(LangUtil.PREFIX + LangUtil.SET_REGION_SOUND_NO_SOUND);
+                            player.sendMessage(LangUtil.PREFIX + LangUtil.SET_LEADERBOARD_TYPE_NO_TYPE);
                             return true;
                         }
                         LeaderboardType type;
                         try {
                             type = LeaderboardType.valueOf(args[4]);
                         } catch (IllegalArgumentException ex) {
-                            player.sendMessage(LangUtil.PREFIX);
+                            player.sendMessage(LangUtil.PREFIX + LangUtil.SET_LEADERBOARD_TYPE_NOT_TYPE);
                             return true;
                         }
                         leaderboard.setType(type);
-                        player.sendMessage(LangUtil.PREFIX + LangUtil.SET_REGION_SOUND_SUCCESS);
+                        player.sendMessage(LangUtil.PREFIX + LangUtil.SET_LEADERBOARD_TYPE_SUCCESS);
                         return true;
                     }
                     if (args[3].equalsIgnoreCase("length")) {
                         if (args.length < 5) {
-                            player.sendMessage(LangUtil.PREFIX + LangUtil.SET_REGION_SOUND_NO_SOUND);
+                            player.sendMessage(LangUtil.PREFIX + LangUtil.SET_LEADERBOARD_LENGTH_NO_LENGTH);
                             return true;
                         }
                         int length;
                         try {
                             length = Integer.parseInt(args[4]);
                         } catch (NumberFormatException ex) {
-                            player.sendMessage(LangUtil.PREFIX);
+                            player.sendMessage(LangUtil.PREFIX + LangUtil.SET_LEADERBOARD_LENGTH_NOT_NUMBER);
                             return true;
                         }
                         leaderboard.setLength(length);
-                        player.sendMessage(LangUtil.PREFIX + LangUtil.SET_REGION_SOUND_SUCCESS);
+                        player.sendMessage(LangUtil.PREFIX + LangUtil.SET_LEADERBOARD_LENGTH_SUCCESS);
                         return true;
                     }
                     player.sendMessage(LangUtil.PREFIX + LangUtil.HELP_HEADER);
