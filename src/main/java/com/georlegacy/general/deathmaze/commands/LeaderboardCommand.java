@@ -696,7 +696,7 @@ public class LeaderboardCommand {
                         }
                         LeaderboardType type;
                         try {
-                            type = LeaderboardType.valueOf(args[4]);
+                            type = LeaderboardType.valueOf(args[4].toUpperCase());
                         } catch (IllegalArgumentException ex) {
                             player.sendMessage(LangUtil.PREFIX + LangUtil.SET_LEADERBOARD_TYPE_NOT_TYPE);
                             return true;
