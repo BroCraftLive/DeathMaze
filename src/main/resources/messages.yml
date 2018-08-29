@@ -215,6 +215,8 @@ LeaderboardAddTypeNotType: '&eThe type you have provided is not a valid type. &c
 
 LeaderboardAddColorNotColor: '&eThe color you have provided is not a valid color. &c( eg f )'
 
+LeaderboardAddExists: '&eA leaderboard of that name already exists.'
+
 LeaderboardAddSuccess: '&aThe leaderboard has been added successfully.'
 
 LeaderboardTpNoLeaderboard: '&eYou need to provide a leaderboard to teleport to.'

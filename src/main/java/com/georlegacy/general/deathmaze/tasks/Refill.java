@@ -26,7 +26,8 @@ public class Refill implements Runnable {
     @Override
     public void run() {
         ContainerLootable container = plugin.getRefills().get(taskID);
-        container.getLocation().getLocation().getBlock().setType(container.getType());
+        if (container.isHiddenWhenEmpty())
+            container.getLocation().getLocation().getBlock().setType(container.getType());
         InventoryHolder inv = (InventoryHolder) container.getLocation().getLocation().getBlock().getState();
         List<ItemStack> it = new ArrayList<ItemStack>();
         plugin.getLoots().put(container, false);

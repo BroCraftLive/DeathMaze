@@ -27,9 +27,7 @@ public class ContainerLootableCommand {
     @Command(permission = "deathmaze.admin.lootable", subCommand = "lootable")
     public boolean onCommand(CommandSender sender, org.bukkit.command.Command command, String label, String[] args) {
         Player p = (Player) sender;
-        Set<Material> transparent = new HashSet<Material>();
-        transparent.add(Material.AIR);
-        Block block = p.getTargetBlock(transparent, 5);
+        Block block = p.getTargetBlock(null,5);
         if (args.length == 1) {
             p.sendMessage(LangUtil.PREFIX + LangUtil.INCORRECT_ARGS_MESSAGE);
             return true;

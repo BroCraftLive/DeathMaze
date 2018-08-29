@@ -137,6 +137,7 @@ public class LangUtil {
             LEADERBOARD_ADD_LENGTH_NOT_NUMBER = isInitialised ? format(config.getString("LeaderboardAddLengthNotNumber")) : noMsg;
             LEADERBOARD_ADD_TYPE_NOT_TYPE = isInitialised ? format(config.getString("LeaderboardAddTypeNotType")) : noMsg;
             LEADERBOARD_ADD_COLOR_NOT_COLOR = isInitialised ? format(config.getString("LeaderboardAddColorNotColor")) : noMsg;
+            LEADERBOARD_ADD_EXISTS = isInitialised ? format(config.getString("LeaderboardAddExists")) : noMsg;
             LEADERBOARD_ADD_SUCCESS = isInitialised ? format(config.getString("LeaderboardAddSuccess")) : noMsg;
             LEADERBOARD_TP_NO_LEADERBOARD = isInitialised ? format(config.getString("LeaderboardTpNoLeaderboard")) : noMsg;
             LEADERBOARD_TP_NOT_LEADERBOARD = isInitialised ? format(config.getString("LeaderboardTpNotLeaderboard")) : noMsg;
@@ -370,6 +371,8 @@ public class LangUtil {
     public static String LEADERBOARD_ADD_TYPE_NOT_TYPE;
 
     public static String LEADERBOARD_ADD_COLOR_NOT_COLOR;
+
+    public static String LEADERBOARD_ADD_EXISTS;
 
     public static String LEADERBOARD_ADD_SUCCESS;
 

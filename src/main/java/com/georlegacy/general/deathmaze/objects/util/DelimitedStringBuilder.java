@@ -6,6 +6,8 @@ public class DelimitedStringBuilder {
 
     private final StringBuilder builder;
 
+    boolean hasNone;
+
     public DelimitedStringBuilder() {
         this(" ");
     }
@@ -13,6 +15,7 @@ public class DelimitedStringBuilder {
     public DelimitedStringBuilder(String delimiter) {
         this.delimiter = delimiter;
         this.builder = new StringBuilder();
+        this.hasNone = true;
     }
 
     @Override
@@ -21,11 +24,14 @@ public class DelimitedStringBuilder {
     }
 
     public void append(String s) {
-        this.builder.append(s + this.delimiter);
+        if (hasNone) {
+            hasNone = false;
+            this.builder.append(s);
+        }
+        else {
+            this.builder.append(this.delimiter + s);
+        }
     }
 
-    public void append(char c) {
-        this.builder.append(c + this.delimiter);
-    }
 
 }

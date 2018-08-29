@@ -129,6 +129,7 @@ public class ConfigUtil {
                 .replaceAll("%TYPEUPPER%", "")
                 .replaceAll("%TYPELOWER%", "") : initial;
         return ColorUtil.format(finish)
+                .replace("%NUMBER%", String.valueOf(leaderboard.getPosition(stats)))
                 .replaceAll("%COLOR%", leaderboard.getColor().toString())
                 .replaceAll("%NAME%", stats.getName())
                 .replaceAll("%NAMEUPPER%", stats.getName().toUpperCase())
@@ -158,7 +159,7 @@ public class ConfigUtil {
     }
 
     public String getRegionEntryHeader(RegionExplorable r) {
-        return ColorUtil.format(this.config.getString("RegionEntryHeader").replace("%RNAME%", r.getName()));
+        return ColorUtil.format(this.config.getString("RegionEntryHeader").replace("%RNAME%", r.getName().replaceAll("_", " ")));
     }
 
     public int getRegionEntryFadeIn() {

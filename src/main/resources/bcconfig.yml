@@ -14,36 +14,34 @@
 
 # Worlds that DeathMaze is active in.
 EnabledWorlds:
-- world
-- nether
+- Deathmaze
 
 # Message sent to player when using /deathmaze visit
 # Only placeholder is %PNAME% (Player name)
-VisitMessage: '&cWelcome to the Maze &e%PNAME%&c, a place of &eterror &cand &etreachery &cto test your senses.'
+VisitMessage: '&eWelcome to Deathmaze %PNAME%, &cstay safe.'
 
 # Sound played to player when using /deathmaze visit
 # Use NONE for no sound
-VisitSound: BLOCK_DISPENSER_LAUNCH
+VisitSound: AMBIENT_CAVE
 
 # Header for sidebar scoreboard.
 # Color codes allowed
-ScoreboardHeader: '&7&l&k|&c&lDeathMaze&7&l&k|'
+ScoreboardHeader: '&7&l&k|&c&lDeathmaze&7&l&k|'
 
 # Format for sidebar scoreboard content.
 # Color codes and placeholders allowed.
 # Ensure no two lines are the same!
 ScoreboardFormat:
-- '&r'
-- '&bName: &e%NAME%'
-- '&bDistance: &e%DISTANCE%'
-- '&bKills: &e%KILLS%'
-- '&bDeaths: &e%DEATHS%'
-- '&bLootables: &e%CONTAINERS%'
-- '&bRegions: &e%REGIONS%'
-- '&bCurrent Region: &e%CURRENTREGION%'
-- '&bLevel: &e%LEVEL%'
-- '&bTotal XP: &e%TOTALXP%'
-- '&bNext Level: &e%XP%/%NEXTXP%'
+- '&c&l%NAME%'
+- '&cDistance: &7%DISTANCE%'
+- '&cKills: &7%KILLS%'
+- '&cDeaths: &7%DEATHS%'
+- '&cLootables: &7%CONTAINERS%'
+- '&cRegions: &7%REGIONS%'
+- '&cCurrent Region: &7%CURRENTREGION%'
+- '&cLevel: &7%LEVEL%'
+- '&cNext Level: &7%XP%/%NEXTXP%'
+- '&cTotal XP: &7%TOTALXP%'
 
 # Format for staff editing scoreboard.
 # Color codes and ONLY %NAME% placeholder allowed.
@@ -68,7 +66,6 @@ SpectatingScoreboardFormat:
 - '   '
 
 # Format for entries in the hologram leaderboards
-# %NUMBER% - The position the player is on the leaderboard
 # %COLOR% - The color for the leaderboard
 # %NAME% - The player's name
 # %NAMEUPPER% - As above in uppercase
@@ -77,22 +74,23 @@ SpectatingScoreboardFormat:
 # %TYPE% - The type that the leaderboard is sorted by
 # %TYPEUPPER% - As above in uppercase
 # %TYPELOWER% - As above in lowercase
-LeaderboardEntryFormat: '&f%NUMBER%&7. %COLOR%%NAMEUPPER% &7- %COLOR%%VALUE% %TYPEUPPER%'
+LeaderboardEntryFormat: '&f%NUMBER%&7. %COLOR%%NAME% &7- %COLOR%%VALUE% %TYPE%'
 
 # Types that do not show their name in leaderboards when below
 NoIndicatorTypesLeaderboard:
 - 'DISTANCE'
+- 'LEVEL'
 
 # Seconds in between automatic leaderboard updates
 # For no updates, use 0
-LeaderboardUpdateInterval: 10
+LeaderboardUpdateInterval: 30
 
 # The block used in previewing regions (CLIENT SIDE PREVIEW)
 PreviewBlock: GLASS
 
 # Header for region entry title
 # %RNAME% - Name of the region
-RegionEntryHeader: '&c&lNow entering &o%RNAME%'
+RegionEntryHeader: '&c&lNow entering &e&l%RNAME%'
 
 # The time taken for the region entry title to fade in
 # Must be an integer
@@ -108,19 +106,19 @@ RegionEntryTitleStay: 10
 
 # Denotes how many seconds of blindness is to be given to a player upon entering a region, 0 for no blindness
 # Must be an integer
-RegionEntryBlindness: 2
+RegionEntryBlindness: 0
 
 # Default refill time period when creating lootable containers in milliseconds.
-DefaultRefillSeconds: 15
+DefaultRefillSeconds: 660
 
 # XP earned by a player for every 100 meters walked in the maze
 XPPer100M: 2
 
 # XP earned by a player for every kill in the maze
-XPPerKill: 12
+XPPerKill: 10
 
 # XP earned by a player dying in the maze
-XPPerDeath: 3
+XPPerDeath: 0
 
 # XP earned by a player for opening a new lootable
 XPPerLootable: 15

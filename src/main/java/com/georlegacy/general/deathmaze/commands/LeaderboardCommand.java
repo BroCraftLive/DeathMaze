@@ -31,6 +31,11 @@ public class LeaderboardCommand {
         for (Map.Entry<Player, PlayerStats> entry : DeathMaze.getInstance().stats.entrySet())
             StatsEncoder.encode(entry.getValue());
 
+        if (args.length == 1) {
+            player.sendMessage(LangUtil.PREFIX + LangUtil.INCORRECT_ARGS_MESSAGE);
+            return true;
+        }
+
         if (args[1].equalsIgnoreCase("update")) {
             DeathMaze.getInstance().getMaze().getLeaderboards().forEach(leaderboard -> {
                 if (leaderboard.update() == 0) {
@@ -615,7 +620,7 @@ public class LeaderboardCommand {
             }
             for (Leaderboard board : DeathMaze.getInstance().getMaze().getLeaderboards()) {
                 if (args[2].equalsIgnoreCase(board.getName())) {
-                    player.sendMessage("exists");
+                    player.sendMessage(LangUtil.PREFIX +LangUtil.LEADERBOARD_ADD_EXISTS);
                     return true;
                 }
             }

@@ -17,8 +17,10 @@ import com.georlegacy.general.deathmaze.util.MazeEncoder;
 import com.georlegacy.general.deathmaze.util.StatsEncoder;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import lombok.Getter;
+import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -30,24 +32,43 @@ import java.util.logging.Level;
 
 public final class DeathMaze extends JavaPlugin {
     public HashMap<Player, PlayerStats> stats;
-    @Getter public HashMap<Player, MazeMode> modes;
-    @Getter private HashMap<Integer, ContainerLootable> refills;
-    @Getter private HashMap<Player, RegionExplorable> regions;
-    @Getter private HashMap<ContainerLootable, Boolean> loots;
-    @Getter private HashMap<String, PaginationSet> playerRegionLists;
-    @Getter private HashMap<String, PaginationSet> playerLootableLists;
-    @Getter private HashMap<String, PaginationSet> playerLeaderboardLists;
-    @Getter private HashMap<String, PaginationSet> playerLeaderboardKillsViewLists;
-    @Getter private HashMap<String, PaginationSet> playerLeaderboardDeathsViewLists;
-    @Getter private HashMap<String, PaginationSet> playerLeaderboardLevelViewLists;
-    @Getter private HashMap<String, PaginationSet> playerLeaderboardXPViewLists;
-    @Getter private HashMap<String, PaginationSet> playerLeaderboardDistanceViewLists;
-    @Getter private HashMap<String, PaginationSet> playerLeaderboardRegionsViewLists;
-    @Getter private HashMap<String, PaginationSet> playerLeaderboardLootablesViewLists;
+    @Getter
+    public HashMap<Player, MazeMode> modes;
+    @Getter
+    private HashMap<Integer, ContainerLootable> refills;
+    @Getter
+    private HashMap<Player, RegionExplorable> regions;
+    @Getter
+    private HashMap<ContainerLootable, Boolean> loots;
+    @Getter
+    private HashMap<String, PaginationSet> playerRegionLists;
+    @Getter
+    private HashMap<String, PaginationSet> playerLootableLists;
+    @Getter
+    private HashMap<String, PaginationSet> playerLeaderboardLists;
+    @Getter
+    private HashMap<String, PaginationSet> playerLeaderboardKillsViewLists;
+    @Getter
+    private HashMap<String, PaginationSet> playerLeaderboardDeathsViewLists;
+    @Getter
+    private HashMap<String, PaginationSet> playerLeaderboardLevelViewLists;
+    @Getter
+    private HashMap<String, PaginationSet> playerLeaderboardXPViewLists;
+    @Getter
+    private HashMap<String, PaginationSet> playerLeaderboardDistanceViewLists;
+    @Getter
+    private HashMap<String, PaginationSet> playerLeaderboardRegionsViewLists;
+    @Getter
+    private HashMap<String, PaginationSet> playerLeaderboardLootablesViewLists;
 
-    @Getter private Maze maze;
-    @Getter private ConfigUtil configuration;
-    @Getter private WorldEditPlugin worldedit;
+    @Getter
+    private Maze maze;
+    @Getter
+    private ConfigUtil configuration;
+    @Getter
+    private WorldEditPlugin worldedit;
+    @Getter
+    private Economy economy;
 
     private int updatesTaskId = 0;
 
@@ -82,6 +103,12 @@ public final class DeathMaze extends JavaPlugin {
 
         configuration = ConfigUtil.get();
         worldedit = (WorldEditPlugin) this.getServer().getPluginManager().getPlugin("WorldEdit");
+
+        if (!setupEconomy()) {
+            getLogger().severe(String.format("[%s] - Disabled due to no Vault dependency found!"));
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
 
         startUpdates();
         startRefills();
@@ -130,6 +157,18 @@ public final class DeathMaze extends JavaPlugin {
         checkPlayers();
     }
 
+    private boolean setupEconomy() {
+        if (getServer().getPluginManager().getPlugin("Vault") == null) {
+            return false;
+        }
+        RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
+        if (rsp == null) {
+            return false;
+        }
+        economy = rsp.getProvider();
+        return economy != null;
+    }
+
     private void startUpdates() {
         if (updatesTaskId != 0)
             getServer().getScheduler().cancelTask(updatesTaskId);
@@ -143,7 +182,7 @@ public final class DeathMaze extends JavaPlugin {
         for (ContainerLootable c : maze.getContainers()) {
             Refill refill = new Refill(this);
             final int id = getServer().getScheduler().scheduleSyncRepeatingTask(this, refill, 1L,
-                    (c.getRefillSeconds()*20));
+                    (c.getRefillSeconds() * 20));
             refill.setTaskID(id);
             refills.put(id, c);
         }
@@ -153,7 +192,7 @@ public final class DeathMaze extends JavaPlugin {
     private synchronized void checkPlayers() {
         for (Player p : Bukkit.getOnlinePlayers()) {
             if (!stats.containsKey(p)) continue;
-            for (RegionExplorable region : (ArrayList<RegionExplorable>) new ArrayList<>(stats.get(p).getRegionsExplored()).clone()){
+            for (RegionExplorable region : (ArrayList<RegionExplorable>) new ArrayList<>(stats.get(p).getRegionsExplored()).clone()) {
                 if (!containsMaze(maze.getRegions(), region)) {
                     stats.get(p).getRegionsExplored().remove(region);
                 }

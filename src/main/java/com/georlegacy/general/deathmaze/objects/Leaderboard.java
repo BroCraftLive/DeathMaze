@@ -106,6 +106,37 @@ public class Leaderboard implements Serializable {
         }
     }
 
+    public int getPosition(PlayerStats playerStats) {
+        List<PlayerStats> allStats = new LinkedList<PlayerStats>();
+        for (File file : Objects.requireNonNull(new File(DeathMaze.getInstance().getDataFolder() + File.separator + "players" + File.separator).listFiles())) {
+            allStats.add(StatsEncoder.decode(file));
+        }
+        allStats.sort((o1, o2) -> {
+            switch (type) {
+                case KILLS:
+                    return Integer.compare(o2.getKills(), o1.getKills());
+                case DEATHS:
+                    return Integer.compare(o2.getDeaths(), o1.getDeaths());
+                case LEVEL:
+                    return Integer.compare(o2.getCurrentLevel().getLevel(), o1.getCurrentLevel().getLevel());
+                case XP:
+                    return Math.round(Double.compare(o2.getCurrentLevel().getPreviousTotal() + o2.getExcessXp(), o1.getCurrentLevel().getPreviousTotal() + o1.getExcessXp()));
+                case DISTANCE:
+                    return Math.round(Double.compare(o2.getDistance(), o1.getDistance()));
+                case REGIONS:
+                    return Integer.compare(o2.getRegionsExplored().size(), o1.getRegionsExplored().size());
+                case LOOTABLES:
+                    return Integer.compare(o2.getContainersLooted().size(), o1.getContainersLooted().size());
+            }
+            throw new RuntimeException("A fatal error occurred whilst searching leaderboard " + name);
+        });
+        for (int i = 1; i < allStats.size(); i++) {
+            if (allStats.get(i).equals(playerStats))
+                return i;
+        }
+        return 0;
+    }
+
     public synchronized int update() {
         DeathMaze.getInstance().stats.values().forEach(StatsEncoder::encode);
 
@@ -126,11 +157,11 @@ public class Leaderboard implements Serializable {
                 case DISTANCE:
                     return Math.round(Double.compare(o2.getDistance(), o1.getDistance()));
                 case REGIONS:
-                    return Integer.compare(o1.getRegionsExplored().size(), o2.getRegionsExplored().size());
+                    return Integer.compare(o2.getRegionsExplored().size(), o1.getRegionsExplored().size());
                 case LOOTABLES:
-                    return Integer.compare(o1.getContainersLooted().size(), o2.getContainersLooted().size());
+                    return Integer.compare(o2.getContainersLooted().size(), o1.getContainersLooted().size());
             }
-            throw new RuntimeException("A fatal error occurred whilst updating leaderboard" + name);
+            throw new RuntimeException("A fatal error occurred whilst updating leaderboard " + name);
         });
         this.statsList.clear();
         if (length > allStats.size())

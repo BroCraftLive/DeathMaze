@@ -246,7 +246,9 @@ public class RegionExplorableCommand {
         }
         if (args[1].equalsIgnoreCase("check")) {
             for (RegionExplorable region : DeathMaze.getInstance().getMaze().getRegions()) {
-                if (new CuboidSelection(p.getWorld(), region.getPos1().getLocation(), region.getPos2().getLocation()).contains(p.getLocation())) {
+                if (new CuboidSelection(p.getWorld(), region.getPos1().getLocation(),
+                        region.getPos2().getLocation())
+                        .contains(p.getLocation())) {
                     p.sendMessage(LangUtil.PREFIX + LangUtil.REGION_CHECK_SUCCESS(region));
                     return true;
                 }
