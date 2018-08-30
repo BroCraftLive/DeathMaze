@@ -14,7 +14,7 @@ import java.util.Objects;
 
 public class ResetAllCommand {
 
-    @SuppressWarnings("SuspiciousMethodCalls")
+    @SuppressWarnings({"SuspiciousMethodCalls", "ResultOfMethodCallIgnored"})
     @Command(permission = "deathmaze.admin.reset.all", subCommand = "resetall")
     public boolean onCommand(CommandSender sender, org.bukkit.command.Command command, String label, String[] args) {
         Player player = (Player) sender;
@@ -22,9 +22,8 @@ public class ResetAllCommand {
         DeathMaze.getInstance().reloadAll();
 
         File file = new File(DeathMaze.getInstance().getDataFolder() + File.separator + "players" + File.separator);
-        for (File child : Objects.requireNonNull(file.listFiles(File::isFile))) {
+        for (File child : Objects.requireNonNull(file.listFiles(File::isFile)))
             child.delete();
-        }
         for (Map.Entry<Player, PlayerStats> entry : DeathMaze.getInstance().stats.entrySet()) {
             DeathMaze.getInstance().stats.remove(entry.getKey());
             PlayerStats stats = new PlayerStats();

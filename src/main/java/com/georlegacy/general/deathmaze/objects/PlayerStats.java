@@ -7,6 +7,9 @@ import com.georlegacy.general.deathmaze.util.ScoreboardUtil;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -48,7 +51,14 @@ class PlayerStats implements Serializable {
             excessXp = 0;
             currentLevel = Level.getNextLevel(currentLevel);
             DeathMaze.getInstance().getEconomy().depositPlayer(p, 1000);
-            p.sendMessage(ColorUtil.format("&aYou have been awarded 1000■ for reaching level " + currentLevel + "."));
+            p.sendMessage(ColorUtil.format("&aYou have been awarded 1000■ for reaching level " +
+                    currentLevel.name().toLowerCase() + "."));
+            TextComponent end = new TextComponent("█");
+            end.setColor(ChatColor.GREEN);
+            TextComponent mid = new TextComponent(" LEVEL " + currentLevel.getLevel() + " ");
+            mid.setColor(ChatColor.GREEN);
+            mid.setBold(true);
+            p.spigot().sendMessage(ChatMessageType.ACTION_BAR, end, mid, end);
         }
         ScoreboardUtil.send(p, this);
     }
