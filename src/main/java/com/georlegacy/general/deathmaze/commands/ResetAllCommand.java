@@ -26,7 +26,7 @@ public class ResetAllCommand {
             child.delete();
         }
         for (Map.Entry<Player, PlayerStats> entry : DeathMaze.getInstance().stats.entrySet()) {
-            DeathMaze.getInstance().stats.remove(entry.getValue());
+            DeathMaze.getInstance().stats.remove(entry.getKey());
             PlayerStats stats = new PlayerStats();
             stats.setName(entry.getKey().getName());
             stats.setUuid(entry.getKey().getUniqueId().toString());
