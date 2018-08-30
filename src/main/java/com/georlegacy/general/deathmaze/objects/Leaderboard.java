@@ -132,7 +132,7 @@ public class Leaderboard implements Serializable {
             throw new RuntimeException("A fatal error occurred whilst searching leaderboard " + name);
         });
         for (int i = 1; i < allStats.size() + 1; i++) {
-            if (allStats.get(i - 1).equals(playerStats))
+            if (allStats.get(i - 1).getUuid().equals(playerStats.getUuid()))
                 return i;
         }
         return 0;
