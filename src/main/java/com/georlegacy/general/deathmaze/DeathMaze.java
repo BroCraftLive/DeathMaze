@@ -197,7 +197,7 @@ public final class DeathMaze extends JavaPlugin {
                     stats.get(p).getRegionsExplored().remove(region);
                 }
             }
-            for (ContainerLootable container : stats.get(p).getContainersLooted()) {
+            for (ContainerLootable container : (ArrayList<ContainerLootable>) new ArrayList<>(stats.get(p).getContainersLooted()).clone()) {
                 if (!maze.getContainers().contains(container))
                     stats.get(p).getContainersLooted().remove(container);
             }
