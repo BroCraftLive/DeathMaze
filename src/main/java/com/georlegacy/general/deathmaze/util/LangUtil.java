@@ -154,6 +154,7 @@ public class LangUtil {
             SET_LEADERBOARD_LENGTH_NO_LENGTH = isInitialised ? format(config.getString("SetLeaderboardLengthNoLength")) : noMsg;
             SET_LEADERBOARD_LENGTH_NOT_NUMBER = isInitialised ? format(config.getString("SetLeaderboardLengthNotNumber")) : noMsg;
             SET_LEADERBOARD_LENGTH_SUCCESS = isInitialised ? format(config.getString("SetLeaderboardLengthSuccess")) : noMsg;
+            RESET_ALL_STATS_SUCCESS = isInitialised ? format(config.getString("ResetAllStatsSucces")) : noMsg;
         } catch (Exception ex) {
             Bukkit.getLogger().severe("There was a fatal error loading the messages.yml file, please delete the file and RESTART your server.");
         }
@@ -405,6 +406,8 @@ public class LangUtil {
     public static String SET_LEADERBOARD_LENGTH_NOT_NUMBER;
 
     public static String SET_LEADERBOARD_LENGTH_SUCCESS;
+
+    public static String RESET_ALL_STATS_SUCCESS;
 
     public static String CHECK_CONTAINER_LOOTABLE_TRUE(ContainerLootable container) {
         return CHECK_CONTAINER_LOOTABLE_TRUE

@@ -339,7 +339,7 @@ public class RegionExplorableCommand {
         previous.setColor(net.md_5.bungee.api.ChatColor.DARK_RED);
         previous.setBold(true);
         previous.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new BaseComponent[]{new TextComponent("Previous")}));
-        previous.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/deathmaze region list previous"));
+        previous.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/deathmazeclickcommandalternative region list previous"));
 
         TextComponent splitLeft = new TextComponent("]+");
         splitLeft.setColor(net.md_5.bungee.api.ChatColor.GRAY);
@@ -357,7 +357,7 @@ public class RegionExplorableCommand {
         next.setColor(net.md_5.bungee.api.ChatColor.DARK_RED);
         next.setBold(true);
         next.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new BaseComponent[]{new TextComponent("Next")}));
-        next.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/deathmaze region list next"));
+        next.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/deathmazeclickcommandalternative region list next"));
 
         player.spigot().sendMessage(end, previous, splitLeft, number, splitRight, next, end);
     }

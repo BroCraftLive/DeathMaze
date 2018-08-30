@@ -108,6 +108,7 @@ public class Leaderboard implements Serializable {
 
     public int getPosition(PlayerStats playerStats) {
         List<PlayerStats> allStats = new LinkedList<PlayerStats>();
+        allStats.clear();
         for (File file : Objects.requireNonNull(new File(DeathMaze.getInstance().getDataFolder() + File.separator + "players" + File.separator).listFiles())) {
             allStats.add(StatsEncoder.decode(file));
         }
@@ -130,8 +131,8 @@ public class Leaderboard implements Serializable {
             }
             throw new RuntimeException("A fatal error occurred whilst searching leaderboard " + name);
         });
-        for (int i = 1; i < allStats.size(); i++) {
-            if (allStats.get(i).equals(playerStats))
+        for (int i = 1; i < allStats.size() + 1; i++) {
+            if (allStats.get(i - 1).equals(playerStats))
                 return i;
         }
         return 0;

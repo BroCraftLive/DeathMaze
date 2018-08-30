@@ -248,3 +248,5 @@ SetLeaderboardLengthNoLength: '&eYou need to provide a new length for the leader
 SetLeaderboardLengthNotNumber: '&eThe length needs to be a valid integer.'
 
 SetLeaderboardLengthSuccess: '&aYou have successfully set the length for that leaderboard.'
+
+ResetAllStatsSuccess: '&aAll stats of players have successfully been reset.'

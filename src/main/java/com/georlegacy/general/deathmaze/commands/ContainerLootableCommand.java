@@ -350,7 +350,7 @@ public class ContainerLootableCommand {
         previous.setColor(net.md_5.bungee.api.ChatColor.DARK_RED);
         previous.setBold(true);
         previous.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new BaseComponent[]{new TextComponent("Previous")}));
-        previous.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/deathmaze lootable list previous"));
+        previous.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/deathmazeclickcommandalternative lootable list previous"));
 
         TextComponent splitLeft = new TextComponent("]+");
         splitLeft.setColor(net.md_5.bungee.api.ChatColor.GRAY);
@@ -368,7 +368,7 @@ public class ContainerLootableCommand {
         next.setColor(net.md_5.bungee.api.ChatColor.DARK_RED);
         next.setBold(true);
         next.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new BaseComponent[]{new TextComponent("Next")}));
-        next.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/deathmaze lootable list next"));
+        next.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/deathmazeclickcommandalternative lootable list next"));
 
         player.spigot().sendMessage(end, previous, splitLeft, number, splitRight, next, end);
     }

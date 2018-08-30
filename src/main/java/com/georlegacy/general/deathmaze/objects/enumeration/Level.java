@@ -21,7 +21,13 @@ public enum Level implements Serializable {
     TWELVE(12, 750),
     THIRTEEN(13, 1000),
     FOURTEEN(14, 1500),
-    FIFTEEN(15, 2000);
+    FIFTEEN(15, 2000),
+    SIXTEEN(16, 2500),
+    SEVENTEEN(17, 3000),
+    EIGHTEEN(18, 4000),
+    NINETEEN(19, 5000),
+    TWENTY(20, 7500),
+    ;
 
     @Getter private int level;
     @Getter private int xp;

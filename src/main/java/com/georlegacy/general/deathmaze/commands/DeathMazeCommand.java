@@ -21,13 +21,16 @@ public class DeathMazeCommand implements CommandExecutor {
         if (args.length == 0) {
             sender.sendMessage(LangUtil.PREFIX + LangUtil.HELP_HEADER);
             sender.sendMessage(ColorUtil.format("&c/deathmaze - &7Displays this help menu"));
-            sender.sendMessage(ColorUtil.format("&c/deathmaze lootable <add|remove|set|update|check|list|tp> - &7Controls lootable containers"));
-            sender.sendMessage(ColorUtil.format("&c/deathmaze leaderboard <add|remove|set|view|list|tp|update> - &7Controls holographic leaderboards"));
-            sender.sendMessage(ColorUtil.format("&c/deathmaze region <add|preview|remove|set|splash|check|list|tp> - &7Controls regions"));
+            if (sender.hasPermission("deathmaze.admin.help")) {
+                sender.sendMessage(ColorUtil.format("&c/deathmaze lootable <add|remove|set|update|check|list|tp> - &7Controls lootable containers"));
+                sender.sendMessage(ColorUtil.format("&c/deathmaze leaderboard <add|remove|set|view|list|tp|update> - &7Controls holographic leaderboards"));
+                sender.sendMessage(ColorUtil.format("&c/deathmaze region <add|preview|remove|set|splash|check|list|tp> - &7Controls regions"));
+                sender.sendMessage(ColorUtil.format("&c/deathmaze reload - &7Reloads the plugin and configurations"));
+                sender.sendMessage(ColorUtil.format("&c/deathmaze setspawn - &7Sets the spawnpoint for the Maze"));
+                sender.sendMessage(ColorUtil.format("&c/deathmaze reset <player> - &7Resets ALL of a player's scores"));
+                sender.sendMessage(ColorUtil.format("&c/deathmaze resetall - &7Resets ALL of every player's scores"));
+            }
             sender.sendMessage(ColorUtil.format("&c/deathmaze visit - &7Takes you to the maze"));
-            sender.sendMessage(ColorUtil.format("&c/deathmaze reload - &7Reloads the plugin and configurations"));
-            sender.sendMessage(ColorUtil.format("&c/deathmaze setspawn - &7Sets the spawnpoint for the Maze"));
-            sender.sendMessage(ColorUtil.format("&c/deathmaze reset <player> - &7Resets ALL of a player's scores"));
             sender.sendMessage(ColorUtil.format("&c/deathmaze version - &7Displays version and info"));
             return true;
         }
@@ -84,6 +87,13 @@ public class DeathMazeCommand implements CommandExecutor {
                 else
                     new ResetCommand().onCommand(sender, command, label, args);
                 break;
+            case "resetall":
+                c = getAnnotation(ResetAllCommand.class);
+                if (!sender.hasPermission(c.permission()))
+                    sender.sendMessage(LangUtil.PREFIX + LangUtil.NO_PERMISSION_MESSAGE);
+                else
+                    new ResetAllCommand().onCommand(sender, command, label, args);
+                break;
             case "version":
                 c = getAnnotation(VersionCommand.class);
                 if (!sender.hasPermission(c.permission()))
@@ -94,13 +104,16 @@ public class DeathMazeCommand implements CommandExecutor {
             default:
                 sender.sendMessage(LangUtil.PREFIX + LangUtil.HELP_HEADER);
                 sender.sendMessage(ColorUtil.format("&c/deathmaze - &7Displays this help menu"));
-                sender.sendMessage(ColorUtil.format("&c/deathmaze lootable <add|remove|set|update|check|list|tp> - &7Controls lootable containers"));
-                sender.sendMessage(ColorUtil.format("&c/deathmaze leaderboard <add|remove|set|view|list|tp|update> - &7Controls holographic leaderboards"));
-                sender.sendMessage(ColorUtil.format("&c/deathmaze region <add|preview|remove|set|splash|check|list|tp> - &7Controls regions"));
+                if (sender.hasPermission("deathmaze.admin.help")) {
+                    sender.sendMessage(ColorUtil.format("&c/deathmaze lootable <add|remove|set|update|check|list|tp> - &7Controls lootable containers"));
+                    sender.sendMessage(ColorUtil.format("&c/deathmaze leaderboard <add|remove|set|view|list|tp|update> - &7Controls holographic leaderboards"));
+                    sender.sendMessage(ColorUtil.format("&c/deathmaze region <add|preview|remove|set|splash|check|list|tp> - &7Controls regions"));
+                    sender.sendMessage(ColorUtil.format("&c/deathmaze reload - &7Reloads the plugin and configurations"));
+                    sender.sendMessage(ColorUtil.format("&c/deathmaze setspawn - &7Sets the spawnpoint for the Maze"));
+                    sender.sendMessage(ColorUtil.format("&c/deathmaze reset <player> - &7Resets ALL of a player's scores"));
+                    sender.sendMessage(ColorUtil.format("&c/deathmaze resetall - &7Resets ALL of every player's scores"));
+                }
                 sender.sendMessage(ColorUtil.format("&c/deathmaze visit - &7Takes you to the maze"));
-                sender.sendMessage(ColorUtil.format("&c/deathmaze reload - &7Reloads the plugin and configurations"));
-                sender.sendMessage(ColorUtil.format("&c/deathmaze setspawn - &7Sets the spawnpoint for the Maze"));
-                sender.sendMessage(ColorUtil.format("&c/deathmaze reset <player> - &7Resets ALL of a player's scores"));
                 sender.sendMessage(ColorUtil.format("&c/deathmaze version - &7Displays version and info"));
                 break;
         }

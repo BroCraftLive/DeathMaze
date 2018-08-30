@@ -820,7 +820,7 @@ public class LeaderboardCommand {
         previous.setColor(net.md_5.bungee.api.ChatColor.DARK_RED);
         previous.setBold(true);
         previous.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new BaseComponent[]{new TextComponent("Previous")}));
-        previous.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/deathmaze leaderboard view " +
+        previous.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/deathmazeclickcommandalternative leaderboard view " +
                 type.getFriendlyName() +
                 " previous"));
 
@@ -840,7 +840,7 @@ public class LeaderboardCommand {
         next.setColor(net.md_5.bungee.api.ChatColor.DARK_RED);
         next.setBold(true);
         next.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new BaseComponent[]{new TextComponent("Next")}));
-        next.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/deathmaze leaderboard view " +
+        next.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/deathmazeclickcommandalternative leaderboard view " +
                 type.getFriendlyName() +
                 " next"));
 
@@ -856,7 +856,7 @@ public class LeaderboardCommand {
         previous.setColor(net.md_5.bungee.api.ChatColor.DARK_RED);
         previous.setBold(true);
         previous.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new BaseComponent[]{new TextComponent("Previous")}));
-        previous.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/deathmaze leaderboard list previous"));
+        previous.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/deathmazeclickcommandalternative leaderboard list previous"));
 
         TextComponent splitLeft = new TextComponent("]+");
         splitLeft.setColor(net.md_5.bungee.api.ChatColor.GRAY);
@@ -874,7 +874,7 @@ public class LeaderboardCommand {
         next.setColor(net.md_5.bungee.api.ChatColor.DARK_RED);
         next.setBold(true);
         next.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new BaseComponent[]{new TextComponent("Next")}));
-        next.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/deathmaze leaderboard list next"));
+        next.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/deathmazeclickcommandalternative leaderboard list next"));
 
         player.spigot().sendMessage(end, previous, splitLeft, number, splitRight, next, end);
     }
