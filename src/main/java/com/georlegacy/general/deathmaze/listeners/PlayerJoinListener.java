@@ -41,6 +41,7 @@ public class PlayerJoinListener implements Listener {
 
             p.sendMessage(plugin.getConfiguration().getVisitMessage(p));
             ScoreboardUtil.send(e.getPlayer(), stats);
+            return;
         }
 
         p.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
