@@ -5,6 +5,7 @@ import com.georlegacy.general.deathmaze.objects.NoRegion;
 import com.georlegacy.general.deathmaze.objects.RegionExplorable;
 import com.georlegacy.general.deathmaze.util.PlayerUtil;
 import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,6 +20,11 @@ public class PlayerTeleportListener implements Listener {
     @EventHandler
     public void onTeleport(PlayerTeleportEvent event) {
         Player p = event.getPlayer();
+
+        if (!plugin.getConfiguration().getEnabledWorlds().contains(p.getWorld())) {
+            p.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
+            return;
+        }
 
         for (RegionExplorable r : plugin.getMaze().getRegions()) {
             CuboidSelection cs = new CuboidSelection(r.getPos1().getLocation().getWorld(),
