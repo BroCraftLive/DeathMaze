@@ -2,13 +2,15 @@ package com.georlegacy.general.deathmaze.hooks;
 
 import com.google.common.eventbus.Subscribe;
 import github.scarsz.discordsrv.api.events.DiscordGuildMessageReceivedEvent;
+import github.scarsz.discordsrv.dependencies.jda.core.entities.TextChannel;
 import lombok.Getter;
 
 import java.util.Set;
 
 public class DSRVHook {
 
-    @Getter private DiscordCommandManager commandManager;
+    @Getter
+    private DiscordCommandManager commandManager;
 
     public DSRVHook() {
         this.commandManager = new DiscordCommandManager();
@@ -18,7 +20,38 @@ public class DSRVHook {
                 "Displays the DeathMaze leaderboards") {
             @Override
             public void execute(DiscordGuildMessageReceivedEvent event) {
+                TextChannel channel = event.getChannel();
+                String[] args = event.getMessage().getContentRaw().split(" ");
+                if (args.length == 1) {
+                    channel.sendMessage("no bitch").queue();
+                    return;
+                }
+                switch (args[1].toUpperCase()) {
+                    case ("KILLS"):
 
+                        break;
+                    case ("DEATHS"):
+
+                        break;
+                    case ("DISTANCE"):
+
+                        break;
+                    case ("XP"):
+
+                        break;
+                    case ("LEVEL"):
+
+                        break;
+                    case ("LOOTABLES"):
+
+                        break;
+                    case ("REGIONS"):
+
+                        break;
+                    default:
+                        channel.sendMessage("hbn").queue();
+                        break;
+                }
             }
         });
     }

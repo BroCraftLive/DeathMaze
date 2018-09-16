@@ -109,7 +109,7 @@ public final class DeathMaze extends JavaPlugin {
         worldedit = (WorldEditPlugin) this.getServer().getPluginManager().getPlugin("WorldEdit");
 
         if (!setupEconomy()) {
-            getLogger().severe(String.format("[%s] - Disabled due to no Vault dependency found!"));
+            getLogger().severe("[DeathMaze] - Disabled due to no Vault dependency found!");
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
