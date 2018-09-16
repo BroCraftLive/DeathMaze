@@ -59,6 +59,14 @@
             <id>vault-repo</id>
             <url>http://nexus.hc.to/content/repositories/pub_releases</url>
         </repository>
+        <repository>
+            <id>Scarsz-Jenkins</id>
+            <url>http://ci.scarsz.me/plugin/repository/everything/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -98,6 +106,12 @@
             <version>1.6</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>github.scarsz.discordsrv</groupId>
+            <artifactId>DiscordSRV</artifactId>
+            <version>1.16.4</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
-    
+
 </project>

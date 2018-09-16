@@ -1,6 +1,7 @@
 package com.georlegacy.general.deathmaze;
 
 import com.georlegacy.general.deathmaze.commands.DeathMazeCommand;
+import com.georlegacy.general.deathmaze.hooks.DSRVHook;
 import com.georlegacy.general.deathmaze.hooks.PAPIHook;
 import com.georlegacy.general.deathmaze.listeners.*;
 import com.georlegacy.general.deathmaze.objects.ContainerLootable;
@@ -16,6 +17,7 @@ import com.georlegacy.general.deathmaze.util.LangUtil;
 import com.georlegacy.general.deathmaze.util.MazeEncoder;
 import com.georlegacy.general.deathmaze.util.StatsEncoder;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
+import github.scarsz.discordsrv.DiscordSRV;
 import lombok.Getter;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
@@ -69,6 +71,8 @@ public final class DeathMaze extends JavaPlugin {
     private WorldEditPlugin worldedit;
     @Getter
     private Economy economy;
+    @Getter
+    private DSRVHook dsrvHook;
 
     private int updatesTaskId = 0;
 
@@ -110,6 +114,9 @@ public final class DeathMaze extends JavaPlugin {
             return;
         }
 
+        dsrvHook = new DSRVHook();
+        DiscordSRV.api.subscribe(dsrvHook);
+
         startUpdates();
         startRefills();
 
@@ -145,6 +152,8 @@ public final class DeathMaze extends JavaPlugin {
 
         for (int id : refills.keySet())
             getServer().getScheduler().cancelTask(id);
+
+        DiscordSRV.api.unsubscribe(dsrvHook);
     }
 
     public void reloadAll() {
