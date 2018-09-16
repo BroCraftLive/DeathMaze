@@ -4,10 +4,12 @@ import com.georlegacy.general.deathmaze.DeathMaze;
 import com.georlegacy.general.deathmaze.objects.PlayerStats;
 import com.georlegacy.general.deathmaze.util.ScoreboardUtil;
 import com.georlegacy.general.deathmaze.util.StatsEncoder;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.scoreboard.ScoreboardManager;
 
 public class PlayerJoinListener implements Listener {
     private final DeathMaze plugin;
@@ -39,7 +41,10 @@ public class PlayerJoinListener implements Listener {
 
             p.sendMessage(plugin.getConfiguration().getVisitMessage(p));
             ScoreboardUtil.send(e.getPlayer(), stats);
+            return;
         }
+
+        p.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
 
     }
 

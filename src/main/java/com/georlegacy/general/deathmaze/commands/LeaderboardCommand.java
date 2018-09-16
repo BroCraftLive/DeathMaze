@@ -37,11 +37,7 @@ public class LeaderboardCommand {
         }
 
         if (args[1].equalsIgnoreCase("update")) {
-            DeathMaze.getInstance().getMaze().getLeaderboards().forEach(leaderboard -> {
-                if (leaderboard.update() == 0) {
-                    Bukkit.getLogger().warning("An unexpected value has been returned, if this happens repeatedly, please report.");
-                }
-            });
+            Leaderboards.updateLeaderboards();
             player.sendMessage(LangUtil.PREFIX + LangUtil.LEADERBOARD_UPDATE_SUCCESS);
             return true;
         }
@@ -652,7 +648,7 @@ public class LeaderboardCommand {
                     args[2]
             );
             DeathMaze.getInstance().getMaze().getLeaderboards().add(leaderboard);
-            leaderboard.update();
+            Leaderboards.updateLeaderboards();
             player.sendMessage(LangUtil.PREFIX + LangUtil.LEADERBOARD_ADD_SUCCESS);
             return true;
         }
