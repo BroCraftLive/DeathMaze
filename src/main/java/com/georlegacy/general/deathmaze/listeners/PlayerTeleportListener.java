@@ -27,12 +27,15 @@ public class PlayerTeleportListener implements Listener {
         }
 
         for (RegionExplorable r : plugin.getMaze().getRegions()) {
-            CuboidSelection cs = new CuboidSelection(r.getPos1().getLocation().getWorld(),
-                    r.getPos1().getLocation(), r.getPos2().getLocation());
+            CuboidSelection cs = new CuboidSelection(r.getPos1().getLocation().getWorld(), r.getPos1().getLocation(), r.getPos2().getLocation());
             if (cs.contains(event.getTo())) {
-                if (plugin.getRegions().containsKey(p))
-                    if (plugin.getRegions().get(p).equals(r))
+                if (plugin.getRegions().containsKey(p)) {
+                    if (plugin.getRegions().get(p).equals(r)) {
                         return;
+                    }
+                    PlayerUtil.setRegion(p, r);
+                    return;
+                }
                 PlayerUtil.setRegion(p, r);
                 return;
             }
