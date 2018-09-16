@@ -52,7 +52,7 @@ public enum Level implements Serializable {
     }
 
     public static Level getByLevel(int levelNumber) throws IllegalArgumentException {
-        for (Level level :values()) {
+        for (Level level : values()) {
             if (level.getLevel() == levelNumber) {
                 return level;
             }
