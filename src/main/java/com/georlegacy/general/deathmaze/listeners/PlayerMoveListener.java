@@ -33,11 +33,13 @@ public class PlayerMoveListener implements Listener {
             locs.put(p, p.getLocation());
             return;
         }
-        if (p.getLocation().getBlockX() == locs.get(p).getBlockX() && p.getLocation().getBlockZ() == locs.get(p).getBlockZ()) {
+        if (p.getLocation().getBlockX() == locs.get(p).getBlockX() && p.getLocation().getBlockZ() ==
+                locs.get(p).getBlockZ()) {
             return;
         }
         if (plugin.getModes().getOrDefault(p, MazeMode.PLAYING).equals(MazeMode.PLAYING)) {
-            PlayerUtil.addDistance(p, Math.hypot(p.getLocation().getX() - locs.get(p).getX(), p.getLocation().getZ() - locs.get(p).getZ()));
+            PlayerUtil.addDistance(p, Math.hypot(p.getLocation().getX() - locs.get(p).getX(), p.getLocation().getZ() -
+                    locs.get(p).getZ()));
         }
         locs.put(p, p.getLocation());
     }
@@ -50,7 +52,8 @@ public class PlayerMoveListener implements Listener {
             return;
         }
         for (RegionExplorable r : plugin.getMaze().getRegions()) {
-            CuboidSelection cs = new CuboidSelection(r.getPos1().getLocation().getWorld(), r.getPos1().getLocation(), r.getPos2().getLocation());
+            CuboidSelection cs = new CuboidSelection(r.getPos1().getLocation().getWorld(), r.getPos1().getLocation(),
+                    r.getPos2().getLocation());
             if (cs.contains(p.getLocation())) {
                 if (plugin.getRegions().containsKey(p)) {
                     if (plugin.getRegions().get(p).equals(r)) {

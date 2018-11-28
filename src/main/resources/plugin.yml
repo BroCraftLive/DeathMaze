@@ -1,5 +1,5 @@
 name: DeathMaze
-depend: [WorldEdit]
+depend: [WorldEdit, Vault, DiscordSRV]
 softdepend: [PlaceholderAPI]
 author: 615283
 version: ${project.version}

@@ -1,10 +1,11 @@
 package com.georlegacy.general.deathmaze.hooks;
 
-import com.google.common.eventbus.Subscribe;
+import github.scarsz.discordsrv.api.Subscribe;
 import github.scarsz.discordsrv.api.events.DiscordGuildMessageReceivedEvent;
 import github.scarsz.discordsrv.dependencies.jda.core.entities.TextChannel;
 import lombok.Getter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class DSRVHook {
@@ -58,12 +59,16 @@ public class DSRVHook {
 
     @Subscribe
     public void discordMessageReceived(DiscordGuildMessageReceivedEvent event) {
-
+        commandManager.proccess(event);
     }
 
     private class DiscordCommandManager {
         @Getter
         private Set<DiscordCommand> commands;
+
+        public DiscordCommandManager() {
+            commands = new HashSet<>();
+        }
 
         public void registerCommand(DiscordCommand command) {
             this.commands.add(command);
@@ -71,11 +76,14 @@ public class DSRVHook {
 
         public boolean proccess(DiscordGuildMessageReceivedEvent event) {
             String[] args = event.getMessage().getContentRaw().split(" ");
+            System.out.println("proccessing");
             if (!args[0].startsWith("-"))
                 return false;
+            System.out.println("starts xorrextly");
             for (DiscordCommand command : commands)
                 for (String alias : command.getAliases()) {
-                    if (alias.equalsIgnoreCase(args[0])) {
+                    if (("-" + alias).equalsIgnoreCase(args[0])) {
+                        System.out.println("exex");
                         command.execute(event);
                         return true;
                     }
