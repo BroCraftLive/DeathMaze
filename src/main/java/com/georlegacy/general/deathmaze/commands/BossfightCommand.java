@@ -68,6 +68,7 @@ public class BossfightCommand {
             }
             for (String parameter : availableParameters) {
                 if (args[2].equalsIgnoreCase(parameter)) {
+                    //todo check for first few (in not present condition?)
                     Optional<Method> optionalMethod = Arrays.stream(methods).filter(m ->
                             m.getAnnotation(Setable.class).setDisplayName().equals(parameter)).findFirst();
                     if (!optionalMethod.isPresent()) {
