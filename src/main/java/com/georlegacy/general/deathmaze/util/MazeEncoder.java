@@ -6,8 +6,10 @@ import com.georlegacy.general.deathmaze.objects.PlayerStats;
 
 import java.io.*;
 
+@Deprecated
 public class MazeEncoder {
 
+    @Deprecated
     public static boolean encode(Maze maze) {
         try {
             File file = new File(DeathMaze.getInstance().getDataFolder() + File.separator + "maze.dat");
@@ -31,6 +33,7 @@ public class MazeEncoder {
         }
     }
 
+    @Deprecated
     public static Maze decode() {
         File file = new File(DeathMaze.getInstance().getDataFolder() + File.separator + "maze.dat");
         if (!file.exists()) {

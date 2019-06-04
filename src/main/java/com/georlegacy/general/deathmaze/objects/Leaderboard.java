@@ -86,13 +86,6 @@ public class Leaderboard implements Serializable {
                 entity -> (entity instanceof LivingEntity)
                         && (entity.getScoreboardTags().contains(this.name + "-leaderboard")))
                 .forEach(entity -> ((LivingEntity) entity).remove());
-// ignore below
-//        for (Entity entity : current.getWorld().getNearbyEntities(current, 20,20,20)) {
-//            if (entity instanceof LivingEntity && entity.getScoreboardTags().contains(this.name + "-leaderboard")) {
-//                LivingEntity livingEntity = (LivingEntity) entity;
-//                livingEntity.remove();
-//            }
-//        }
 
         for (String line : reversedLines) {
             ArmorStand stand = current.getWorld().spawn(current, ArmorStand.class);

@@ -1,5 +1,6 @@
 package com.georlegacy.general.deathmaze.objects;
 
+import com.georlegacy.general.deathmaze.hooks.SQLHook;
 import com.georlegacy.general.deathmaze.util.SerializableLocation;
 import lombok.Getter;
 import lombok.Setter;

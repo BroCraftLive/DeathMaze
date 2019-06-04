@@ -33,6 +33,7 @@ import java.util.Map;
 import java.util.logging.Level;
 
 public final class DeathMaze extends JavaPlugin {
+
     public HashMap<Player, PlayerStats> stats;
     @Getter
     public HashMap<Player, MazeMode> modes;
